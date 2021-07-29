@@ -1,5 +1,4 @@
-input text{
-    position: absolute;
+input[type=text], input[type=password]{
     width: 595px;
     height: 39px;
     left: calc(50% - 595px/2 + 1px);
@@ -9,4 +8,8 @@ input text{
 
     background: #F3F3F3;
     border-radius: 46px;
+}
+
+body,h1,h2,h3,h4,h5,h6 {
+    font-family: "Roboto Light", sans-serif;
 }
