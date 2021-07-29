@@ -2,22 +2,37 @@
 
 <html>
   <head>
-   <title>HTML WWP</title>
+   <title>Create Account</title>
+   <link rel="stylesheet" href="style.css">
   </head>
 
   <body>
-    <h2>HTML WWP</h2>
+    <h2>Create Account</h2>
     <div>
       <form action="submit.html">
-        <label for="firstname">First Name:</label>
-        <input type="text" id="firstname" name="firstname"><br>
-        <label for="lastname">Last Name:</label>
-        <input type="text" id="lastname" name="lastname"><br>
+        <label for="accountType">Account Type:</label><br>
+        <select name="accountType" size="4" required>
+          <option value="Admin">Admin </option>
+          <option value="Manager">Manager </option>
+          <option value="Owner">Owner </option>
+          <option value="Contractor">Contractor </option>
+        </select>
+        <br> <br>
+        <label for="firstname">First Name:</label><br>
+        <input type="text" id="firstname" name="firstname" required><br><br>
+        <label for="lastname">Last Name:</label><br>
+        <input type="text" id="lastname" name="lastname" required><br><br>
+        <label for="email">Email:</label><br>
+        <input type="text" id="email" name="email" required><br><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" required><br><br>
+        <label for="password2">Confirm Password:</label><br>
+        <input type="password" id="password2" name="password2" required><br>
         <br>
-        <input type="submit" value="Submit">
-        <input type="reset" value="Reset">
+        <input type="submit" value="Sign Up">
       </form> 
     </div>
+    <a href="index.html">Main Menu</a>
   </body>
 </html>
 
