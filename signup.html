@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="">
   <head>
    <title>Create Account</title>
    <link rel="stylesheet" href="style.css">
@@ -10,13 +10,15 @@
     <h2>Create Account</h2>
     <div>
       <form action="submit.html">
-        <label for="accountType">Account Type:</label><br>
-        <select name="accountType" size="4" required>
-          <option value="Admin">Admin </option>
-          <option value="Manager">Manager </option>
-          <option value="Owner">Owner </option>
-          <option value="Contractor">Contractor </option>
-        </select>
+        <label>Account Type:</label><br>
+        <label>
+          <select name="accountType" size="4" required>
+            <option value="Admin">Admin </option>
+            <option value="Manager">Manager </option>
+            <option value="Owner">Owner </option>
+            <option value="Contractor">Contractor </option>
+          </select>
+        </label>
         <br> <br>
         <label for="firstname">First Name:</label><br>
         <input type="text" id="firstname" name="firstname" required><br><br>

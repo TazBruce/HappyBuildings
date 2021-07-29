@@ -1,0 +1,12 @@
+input text{
+    position: absolute;
+    width: 595px;
+    height: 39px;
+    left: calc(50% - 595px/2 + 1px);
+    top: calc(50% - 39px/2 - 95px);
+
+    /* Button */
+
+    background: #F3F3F3;
+    border-radius: 46px;
+}
