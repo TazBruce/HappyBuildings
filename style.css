@@ -11,10 +11,24 @@ body,h1,h2,h3,h4,h5,h6 {
     color: #FFFFFF;
 }
 
+input[type=submit] {
+    background-color: #FFFC31;
+    color: #2B2D42;
+    cursor: pointer;
+    width: 50%;
+    padding: 5px;
+    border-radius: 100px;
+    margin: auto 0 0 0;
+}
+
+input[type=submit]:hover {
+    background-color: #EE4266;
+}
+
 div {
     background-color: #2B2D42;
     border-radius: 10px;
-    padding: 100px;
+    padding: 20px 100px 100px;
     max-width: 500px;
     margin: 0 auto;
 }
