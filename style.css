@@ -1,15 +1,21 @@
 input[type=text], input[type=password]{
-    width: 595px;
-    height: 39px;
-    left: calc(50% - 595px/2 + 1px);
-    top: calc(50% - 39px/2 - 95px);
-
-    /* Button */
-
+    width: 100%;
+    height: 30px;
     background: #F3F3F3;
     border-radius: 46px;
+    outline: none;
 }
 
 body,h1,h2,h3,h4,h5,h6 {
     font-family: "Roboto Light", sans-serif;
+    color: #FFFFFF;
 }
+
+div {
+    background-color: #2B2D42;
+    border-radius: 10px;
+    padding: 100px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
