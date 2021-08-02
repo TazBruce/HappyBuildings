@@ -7,6 +7,10 @@ input[type=text], input[type=password]{
     outline: none;
 }
 
+#cancel {
+	float: right;
+}
+
 body,h1,h2,h3,h4,h5,h6 {
     font-family: "Roboto Light", sans-serif;
     color: #FFFFFF;
