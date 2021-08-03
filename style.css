@@ -1,40 +1,8 @@
-input[type=text], input[type=password]{
-    width: 100%;
-    height: 30px;
-    background: #F3F3F3;
-    padding-left: 10px;
-    border-radius: 46px;
-    outline: none;
+body {
+    background-color: #0d6efd;
 }
 
-#cancel {
-	float: right;
-}
-
-body,h1,h2,h3,h4,h5,h6 {
-    font-family: "Roboto Light", sans-serif;
-    color: #FFFFFF;
-}
-
-input[type=submit] {
-    background-color: #FFFC31;
-    color: #2B2D42;
-    cursor: pointer;
-    width: 50%;
-    padding: 5px;
-    border-radius: 100px;
-    margin-left: 25%;
-}
-
-input[type=submit]:hover {
-    background-color: #EE4266;
-}
-
-div {
-    background-color: #2B2D42;
-    border-radius: 10px;
-    padding: 20px 100px 100px;
-    max-width: 500px;
-    margin: 0 auto;
+a {
+    color: white;
 }
 
