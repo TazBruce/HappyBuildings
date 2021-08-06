@@ -4,5 +4,5 @@
   "description": "HappyBuilding Manager",
   "dependencies": {
     "angular": "^1.6.9"
-  },
+  }
 }
