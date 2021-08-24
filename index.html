@@ -9,54 +9,312 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-route.min.js"></script>
     <script src="lib/script.js"></script>
-    <title>Login</title>
+    <title>Happy Buildings</title>
 </head>
 
-<body ng-app="app" ng-cloak>
-<div ng-controller="MainCtrl">
-    <div class="container">
-        <div class="row"><br></div>
-        <div class="row">
-            <div class="col"></div>
-            <div class="col-10 bg-white rounded p-4">
-                <form action="submit.html">
-                    <div class="mb-3">
-                        <nav class="navbar navbar-expand-lg navbar-dark bg-primary px-2 rounded">
-                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
-                                    aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
-                            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                                <div class="navbar-nav">
-                                    <a class="nav-link active" aria-current="page" href="index.html">Login</a>
-                                    <a class="nav-link" href="signup.html">Sign Up</a>
-                                    <a class="nav-link" href="work.html">Create Task</a>
-                                    <a class="nav-link" href="project.html">Create Project</a>
-                                    <a class="nav-link" href="building.html">Create Building</a>
-                                </div>
-                            </div>
-                        </nav>
+<body ng-app="app" ng-controller="MainCtrl">
+<div class="container">
+    <div class="row"><br></div>
+    <div class="row">
+        <div class="col"></div>
+
+        <!-- Main Interface -->
+        <div class="col-10 bg-white rounded p-4" >
+            <!-- Login Page -->
+            <form ng-show="pages['login']">
+                <h2>Sign In</h2>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" id="email" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" id="password" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <a href="">Forgot Password?</a>
+                </div>
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary" ng-click="login('login', 'buildingPage')">Login</button>
+                </div>
+            </form>
+
+            <!-- Main Interfaces -->
+            <div class="mb-3" ng-show="loggedIn">
+                <nav class="navbar navbar-expand-lg navbar-dark bg-primary px-2 rounded">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                        <div class="navbar-nav">
+                            <a class="nav-link" href="index.html">Login</a>
+                            <a class="nav-link" href="signup.html">Sign Up</a>
+                            <a class="nav-link" href="work.html">Create Task</a>
+                            <a class="nav-link" href="project.html">Create Project</a>
+                            <a class="nav-link active" aria-current="page">Create Building</a>
+                        </div>
                     </div>
-                    <h2>Sign In</h2>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" id="email" class="form-control" required>
+                </nav>
+            </div>
+
+            <!-- Building Page -->
+            <form ng-show="pages['buildingPage']">
+                <div class="row">
+                    <div class="col-10">
+                        <h2>Create Building</h2>
                     </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" id="password" class="form-control" required>
+                    <div class="col">
+                        <button type="reset" class="btn btn-primary float-end">X</button>
                     </div>
-                    <div class="mb-3">
-                        <a href="">Forgot Password?</a>
+                </div>
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Building Name</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="address" class="form-label">Building Address</label>
+                            <input type="text" id="address" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="buildingType" class="form-label">Building Type</label>
+                            <select class="form-select" id="buildingType" aria-label="Default select example" required>
+                                <option selected disabled></option>
+                                <option value="residential">Residential</option>
+                                <option value="commercial">Commercial</option>
+                                <option value="industrial">Industrial</option>
+                                <option value="institutional">Institutional</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="date" class="form-label">Date of Construction</label>
+                            <input type="date" id="date" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="mb-3">
+                            <label for="owner" class="form-label">Owner(s)</label>
+                            <select class="form-select" id="owner" aria-label="Default select example" required>
+                                <option selected disabled></option>
+                                <option data-tokens="bobS">Bob Smith</option>
+                                <option data-tokens="rickyH">Ricky Henare</option>
+                                <option data-tokens="trishB">Trish Brown</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Projects</label>
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Project</th>
+                                    <th scope="col">Completed</th>
+                                    <th scope="col">Action
+                                        <button type="button" class="btn btn-primary">+</button>
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td><a href="project.html">Scaffolding</a></td>
+                                    <td><input type="checkbox" class="form-check-input"></td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary">-</button>
+                                        <button type="button" class="btn btn-primary">Edit</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><a href="project.html">Electricity</a></td>
+                                    <td><input type="checkbox" class="form-check-input"></td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary">-</button>
+                                        <button type="button" class="btn btn-primary">Edit</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><a href="project.html">Plumbing</a></td>
+                                    <td><input type="checkbox" class="form-check-input"></td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary">-</button>
+                                        <button type="button" class="btn btn-primary">Edit</button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                     <div class="d-grid gap-2">
-                        <button type="submit" class="btn btn-primary">Login</button>
+                        <button type="submit" class="btn btn-primary">Create</button>
                     </div>
-                </form>
-            </div>
-            <div class="col"></div>
+                </div>
+            </form>
+
+            <!-- Project Page -->
+            <form ng-show="pages['projectPage']">
+                <div class="row">
+                    <div class="col-10">
+                        <h2>Create Project</h2>
+                    </div>
+                    <div class="col">
+                        <button type="reset" class="btn btn-primary float-end">X</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Project Name</label>
+                            <input type="text" id="projectName" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="buildingType" class="form-label">Project Status</label>
+                            <select class="form-select" id="projectStatus" aria-label="Default select example" required>
+                                <option selected disabled></option>
+                                <option value="unscheduled">Unscheduled</option>
+                                <option value="scheduled">Scheduled</option>
+                                <option value="current">Current</option>
+                                <option value="closed">Closed</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="startDate" class="form-label">Project Start Date</label>
+                            <input type="date" id="startDate" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="finishDate" class="form-label">Project Finish Date</label>
+                            <input type="date" id="finishDate" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label for="owner" class="form-label">Contractors(s)</label>
+                            <select class="form-select" id="contractors" aria-label="Default select example" required>
+                                <option selected disabled></option>
+                                <option data-tokens="bobS">Bob Smith</option>
+                                <option data-tokens="rickyH">Ricky Henare</option>
+                                <option data-tokens="trishB">Trish Brown</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="col">
+                            <label class="form-label">Works</label>
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Work</th>
+                                    <th scope="col">Completed</th>
+                                    <th scope="col">Action
+                                        <button type="button" class="btn btn-primary">+</button>
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td><a href="project.html">Scaffolding</a></td>
+                                    <td><input type="checkbox" class="form-check-input"></td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary">-</button>
+                                        <button type="button" class="btn btn-primary">Edit</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><a href="project.html">Electricity</a></td>
+                                    <td><input type="checkbox" class="form-check-input"></td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary">-</button>
+                                        <button type="button" class="btn btn-primary">Edit</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><a href="project.html">Plumbing</a></td>
+                                    <td><input type="checkbox" class="form-check-input"></td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary">-</button>
+                                        <button type="button" class="btn btn-primary">Edit</button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <label class="form-label">Comments</label>
+                        <div class="mb-3 overflow-auto" style="max-height: 200px">
+                            <table class="table" id="comments">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Comment</th>
+                                    <th scope="col">User</th>
+                                    <th scope="col">Action
+                                        <button type="button" class="btn btn-primary">+</button>
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>Missing Compliance Sheet</td>
+                                    <td><a href="signup.html">Ryan Hayes</a></td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary">-</button>
+                                        <button type="button" class="btn btn-primary">Edit</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Missing Compliance Sheet</td>
+                                    <td><a href="signup.html">Ryan Hayes</a></td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary">-</button>
+                                        <button type="button" class="btn btn-primary">Edit</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Missing Compliance Sheet</td>
+                                    <td><a href="signup.html">Ryan Hayes</a></td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary">-</button>
+                                        <button type="button" class="btn btn-primary">Edit</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Missing Compliance Sheet</td>
+                                    <td><a href="signup.html">Ryan Hayes</a></td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary">-</button>
+                                        <button type="button" class="btn btn-primary">Edit</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Missing Compliance Sheet</td>
+                                    <td><a href="signup.html">Ryan Hayes</a></td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary">-</button>
+                                        <button type="button" class="btn btn-primary">Edit</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Missing Compliance Sheet</td>
+                                    <td><a href="signup.html">Ryan Hayes</a></td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary">-</button>
+                                        <button type="button" class="btn btn-primary">Edit</button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary">Create</button>
+                    </div>
+                </div>
+            </form>
+            <!-- Building Page -->
+
+            <!-- Building Page -->
+
+            <!-- Building Page -->
+
+            <!-- Building Page -->
         </div>
+        <div class="col"></div>
     </div>
 </div>
 
