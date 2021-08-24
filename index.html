@@ -35,7 +35,7 @@
                     <a href="">Forgot Password?</a>
                 </div>
                 <div class="d-grid gap-2">
-                    <button type="submit" class="btn btn-primary" ng-click="login('login', 'buildingPage')">Login</button>
+                    <button type="submit" class="btn btn-primary" ng-click="login('buildingPage')">Login</button>
                 </div>
             </form>
 
@@ -49,11 +49,11 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div class="navbar-nav">
-                            <a class="nav-link" href="index.html">Login</a>
-                            <a class="nav-link" href="signup.html">Sign Up</a>
-                            <a class="nav-link" href="work.html">Create Task</a>
-                            <a class="nav-link" href="project.html">Create Project</a>
-                            <a class="nav-link active" aria-current="page">Create Building</a>
+                            <a class="nav-link" id="nav-signOut" ng-click="logout()">Sign Out</a>
+                            <a class="nav-link" id="nav-signUp" ng-click="changePage('signup')">Create Account</a>
+                            <a class="nav-link" id="nav-createTask" ng-click="changePage('workPage')">Create Task</a>
+                            <a class="nav-link" id="nav-createProject" ng-click="changePage('projectPage')">Create Project</a>
+                            <a class="nav-link active" id="nav-createBuilding" ng-click="changePage('buildingPage')">Create Building</a>
                         </div>
                     </div>
                 </nav>
@@ -164,7 +164,7 @@
                 <div class="row">
                     <div class="col-md-5">
                         <div class="mb-3">
-                            <label for="name" class="form-label">Project Name</label>
+                            <label for="projectName" class="form-label">Project Name</label>
                             <input type="text" id="projectName" class="form-control" required>
                         </div>
                         <div class="mb-3">
@@ -306,13 +306,88 @@
                     </div>
                 </div>
             </form>
-            <!-- Building Page -->
 
-            <!-- Building Page -->
+            <!-- Create Account -->
+            <form ng-show="pages['signup']">
+                <div class="row">
+                    <div class="col-10">
+                        <h2>Create Account</h2>
+                    </div>
+                    <div class="col">
+                        <button type="reset" class="btn btn-primary float-end">X</button>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="accountType" class="form-label">Account Type</label>
+                    <select class="form-select" id="accountType" aria-label="Default select example" required>
+                        <option selected disabled></option>
+                        <option value="manager">Manager</option>
+                        <option value="owner">Owner</option>
+                        <option value="contractor">Contractor</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="firstname" class="form-label">First Name</label>
+                    <input type="text" id="firstname" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="lastname" class="form-label">Last Name</label>
+                    <input type="text" id="lastname" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="signup-email" class="form-label">Email</label>
+                    <input type="email" id="signup-email" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="signup-password" class="form-label">Password</label>
+                    <input type="password" id="signup-password" class="form-control" required>
+                </div>
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary">Create</button>
+                </div>
+            </form>
 
-            <!-- Building Page -->
+            <!-- Create Task -->
+            <form ng-show="pages['workPage']">
+                <div class="row">
+                    <div class="col-10">
+                        <h2>Create Work Task</h2>
+                    </div>
+                    <div class="col">
+                        <button type="reset" class="btn btn-primary float-end">X</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="mb-3">
+                        <label for="worktype" class="form-label">Type of Work</label>
+                        <input type="text" id="worktype" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="status" class="form-label">Status</label>
+                        <select class="form-select" id="status" aria-label="Default select example" required>
+                            <option selected disabled></option>
+                            <option value="done">Done</option>
+                            <option value="on-going">On-going</option>
+                            <option value="shceduled">Scheduled</option>
+                            <option value="cancelled">Cancelled</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="assign" class="form-label">Assigned Project</label>
+                        <select class="form-select" id="assign" aria-label="Default select example" required>
+                            <option selected disabled></option>
+                            <option value="heating">Heating</option>
+                            <option value="plumbing">Plumbing</option>
+                            <option value="concrete">Concrete</option>
+                            <option value="electricity">Electricity</option>
+                        </select>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary">Create</button>
+                    </div>
+                </div>
+            </form>
 
-            <!-- Building Page -->
         </div>
         <div class="col"></div>
     </div>
