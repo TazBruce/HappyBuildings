@@ -4,6 +4,7 @@ body {
 
 a {
     color: black;
+    cursor: pointer
 }
 
 .nav-link {

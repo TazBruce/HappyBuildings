@@ -20,8 +20,29 @@
 
         <!-- Main Interface -->
         <div class="col-10 bg-white rounded p-4" >
+            <!-- Navigation Bar -->
+            <div class="mb-3" ng-show="loggedIn">
+                <nav class="navbar navbar-expand-lg navbar-dark bg-primary px-2 rounded">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                        <div class="navbar-nav">
+                            <a class="nav-link" id="nav-signOut" ng-click="logout()">Sign Out</a>
+                            <a class="nav-link" id="nav-signUp" ng-click="changePage('createAccount')">Create Account</a>
+                            <a class="nav-link active" id="nav-buildingDirectory" ng-click="changePage('buildingDirectory')">Building Directory</a>
+                            <a class="nav-link" id="nav-createTask" ng-click="changePage('createTask')">Create Task</a>
+                            <a class="nav-link" id="nav-createProject" ng-click="changePage('createProject')">Create Project</a>
+                            <a class="nav-link" id="nav-createBuilding" ng-click="changePage('createBuilding')">Create Building</a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+
             <!-- Login Page -->
-            <form ng-show="pages['login']">
+            <form ng-show="pages['login']" ng-submit="login('buildingDirectory')">
                 <h2>Sign In</h2>
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
@@ -35,32 +56,73 @@
                     <a href="">Forgot Password?</a>
                 </div>
                 <div class="d-grid gap-2">
-                    <button type="submit" class="btn btn-primary" ng-click="login('buildingPage')">Login</button>
+                    <button type="submit" class="btn btn-primary">Login</button>
                 </div>
             </form>
 
-            <!-- Main Interfaces -->
-            <div class="mb-3" ng-show="loggedIn">
-                <nav class="navbar navbar-expand-lg navbar-dark bg-primary px-2 rounded">
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                        <div class="navbar-nav">
-                            <a class="nav-link" id="nav-signOut" ng-click="logout()">Sign Out</a>
-                            <a class="nav-link" id="nav-signUp" ng-click="changePage('signup')">Create Account</a>
-                            <a class="nav-link" id="nav-createTask" ng-click="changePage('workPage')">Create Task</a>
-                            <a class="nav-link" id="nav-createProject" ng-click="changePage('projectPage')">Create Project</a>
-                            <a class="nav-link active" id="nav-createBuilding" ng-click="changePage('buildingPage')">Create Building</a>
-                        </div>
-                    </div>
-                </nav>
-            </div>
+            <!-- Reset Password -->
 
-            <!-- Building Page -->
-            <form ng-show="pages['buildingPage']">
+
+            <!-- Building Directory -->
+            <form ng-show="pages['buildingDirectory']">
+                <div class="row">
+                    <div class="col-10">
+                        <h2>Building Directory</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="mb-3 overflow-auto" style="max-height: 500px">
+                        <table class="table table-striped table-hover" id="buildings">
+                            <thead class="table-dark">
+                            <tr>
+                                <th scope="col">Owner(s)</th>
+                                <th scope="col">Address</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>Ryan Hayes</td>
+                                <td><a href ng-click="">19 Boulcott Street</a></td>
+                            </tr>
+                            <tr>
+                                <td>Hannah Brown</td>
+                                <td><a href ng-click="">23 Cuba Street</a></td>
+                            </tr>
+                            <tr>
+                                <td>Hannah Brown</td>
+                                <td><a href ng-click="">23 Cuba Street</a></td>
+                            </tr>
+                            <tr>
+                                <td>Hannah Brown</td>
+                                <td><a href ng-click="">23 Cuba Street</a></td>
+                            </tr>
+                            <tr>
+                                <td>Hannah Brown</td>
+                                <td><a href ng-click="">23 Cuba Street</a></td>
+                            </tr>
+                            <tr>
+                                <td>Hannah Brown</td>
+                                <td><a href ng-click="">23 Cuba Street</a></td>
+                            </tr>
+                            <tr>
+                                <td>Hannah Brown</td>
+                                <td><a href ng-click="">23 Cuba Street</a></td>
+                            </tr>
+                            <tr>
+                                <td>Hannah Brown</td>
+                                <td><a href ng-click="">23 Cuba Street</a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </form>
+
+            <!-- View Building -->
+
+
+            <!-- Create/Edit Building -->
+            <form ng-show="pages['createBuilding']">
                 <div class="row">
                     <div class="col-10">
                         <h2>Create Building</h2>
@@ -151,8 +213,11 @@
                 </div>
             </form>
 
-            <!-- Project Page -->
-            <form ng-show="pages['projectPage']">
+            <!-- View Project -->
+
+
+            <!-- Create/Edit Project -->
+            <form ng-show="pages['createProject']">
                 <div class="row">
                     <div class="col-10">
                         <h2>Create Project</h2>
@@ -307,48 +372,11 @@
                 </div>
             </form>
 
-            <!-- Create Account -->
-            <form ng-show="pages['signup']">
-                <div class="row">
-                    <div class="col-10">
-                        <h2>Create Account</h2>
-                    </div>
-                    <div class="col">
-                        <button type="reset" class="btn btn-primary float-end">X</button>
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <label for="accountType" class="form-label">Account Type</label>
-                    <select class="form-select" id="accountType" aria-label="Default select example" required>
-                        <option selected disabled></option>
-                        <option value="manager">Manager</option>
-                        <option value="owner">Owner</option>
-                        <option value="contractor">Contractor</option>
-                    </select>
-                </div>
-                <div class="mb-3">
-                    <label for="firstname" class="form-label">First Name</label>
-                    <input type="text" id="firstname" class="form-control" required>
-                </div>
-                <div class="mb-3">
-                    <label for="lastname" class="form-label">Last Name</label>
-                    <input type="text" id="lastname" class="form-control" required>
-                </div>
-                <div class="mb-3">
-                    <label for="signup-email" class="form-label">Email</label>
-                    <input type="email" id="signup-email" class="form-control" required>
-                </div>
-                <div class="mb-3">
-                    <label for="signup-password" class="form-label">Password</label>
-                    <input type="password" id="signup-password" class="form-control" required>
-                </div>
-                <div class="d-grid gap-2">
-                    <button type="submit" class="btn btn-primary">Create</button>
-                </div>
-            </form>
+            <!-- View Task -->
 
-            <!-- Create Task -->
-            <form ng-show="pages['workPage']">
+
+            <!-- Create/Edit Task -->
+            <form ng-show="pages['createTask']">
                 <div class="row">
                     <div class="col-10">
                         <h2>Create Work Task</h2>
@@ -385,6 +413,52 @@
                     <div class="d-grid gap-2">
                         <button type="submit" class="btn btn-primary">Create</button>
                     </div>
+                </div>
+            </form>
+
+            <!-- Create/Edit Comment -->
+
+
+            <!-- View Account -->
+
+
+            <!-- Create/Edit Account -->
+            <form ng-show="pages['createAccount']">
+                <div class="row">
+                    <div class="col-10">
+                        <h2>Create Account</h2>
+                    </div>
+                    <div class="col">
+                        <button type="reset" class="btn btn-primary float-end">X</button>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="accountType" class="form-label">Account Type</label>
+                    <select class="form-select" id="accountType" aria-label="Default select example" required>
+                        <option selected disabled></option>
+                        <option value="manager">Manager</option>
+                        <option value="owner">Owner</option>
+                        <option value="contractor">Contractor</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="firstname" class="form-label">First Name</label>
+                    <input type="text" id="firstname" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="lastname" class="form-label">Last Name</label>
+                    <input type="text" id="lastname" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="signup-email" class="form-label">Email</label>
+                    <input type="email" id="signup-email" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="signup-password" class="form-label">Password</label>
+                    <input type="password" id="signup-password" class="form-control" required>
+                </div>
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary">Create</button>
                 </div>
             </form>
 
