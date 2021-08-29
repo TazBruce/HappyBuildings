@@ -82,35 +82,35 @@
                             <tbody>
                             <tr>
                                 <td>Ryan Hayes</td>
-                                <td><a href ng-click="">19 Boulcott Street</a></td>
+                                <td><a href ng-click="changePage('viewBuilding')">19 Boulcott Street</a></td>
                             </tr>
                             <tr>
                                 <td>Hannah Brown</td>
-                                <td><a href ng-click="">23 Cuba Street</a></td>
+                                <td><a href ng-click="changePage('viewBuilding')">23 Cuba Street</a></td>
                             </tr>
                             <tr>
                                 <td>Hannah Brown</td>
-                                <td><a href ng-click="">23 Cuba Street</a></td>
+                                <td><a href ng-click="changePage('viewBuilding')">23 Cuba Street</a></td>
                             </tr>
                             <tr>
                                 <td>Hannah Brown</td>
-                                <td><a href ng-click="">23 Cuba Street</a></td>
+                                <td><a href ng-click="changePage('viewBuilding')">23 Cuba Street</a></td>
                             </tr>
                             <tr>
                                 <td>Hannah Brown</td>
-                                <td><a href ng-click="">23 Cuba Street</a></td>
+                                <td><a href ng-click="changePage('viewBuilding')">23 Cuba Street</a></td>
                             </tr>
                             <tr>
                                 <td>Hannah Brown</td>
-                                <td><a href ng-click="">23 Cuba Street</a></td>
+                                <td><a href ng-click="changePage('viewBuilding')">23 Cuba Street</a></td>
                             </tr>
                             <tr>
                                 <td>Hannah Brown</td>
-                                <td><a href ng-click="">23 Cuba Street</a></td>
+                                <td><a href ng-click="changePage('viewBuilding')">23 Cuba Street</a></td>
                             </tr>
                             <tr>
                                 <td>Hannah Brown</td>
-                                <td><a href ng-click="">23 Cuba Street</a></td>
+                                <td><a href ng-click="changePage('viewBuilding')">23 Cuba Street</a></td>
                             </tr>
                             </tbody>
                         </table>
@@ -119,31 +119,29 @@
             </form>
 
             <!-- View Building -->
-
-
-            <!-- Create/Edit Building -->
-            <form ng-show="pages['createBuilding']">
+            <div ng-show="pages['viewBuilding']">
                 <div class="row">
                     <div class="col-10">
-                        <h2>Create Building</h2>
+                        <h2>Address</h2>
                     </div>
                     <div class="col">
-                        <button type="reset" class="btn btn-primary float-end">X</button>
+                        <button type="button" ng-click="changePage('createBuilding')" class="btn btn-primary float-end">Edit</button>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-5">
                         <div class="mb-3">
-                            <label for="name" class="form-label">Building Name</label>
-                            <input type="text" id="name" class="form-control" required>
+                            <label for="buildingOwner" class="form-label">Owner(s)</label>
+                            <select class="form-select" id="buildingOwner" aria-label="Default select example" disabled>
+                                <option selected disabled></option>
+                                <option data-tokens="bobS">Bob Smith</option>
+                                <option data-tokens="rickyH">Ricky Henare</option>
+                                <option data-tokens="trishB">Trish Brown</option>
+                            </select>
                         </div>
                         <div class="mb-3">
-                            <label for="address" class="form-label">Building Address</label>
-                            <input type="text" id="address" class="form-control" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="buildingType" class="form-label">Building Type</label>
-                            <select class="form-select" id="buildingType" aria-label="Default select example" required>
+                            <label for="type" class="form-label">Building Type</label>
+                            <select class="form-select" id="type" aria-label="Default select example" disabled>
                                 <option selected disabled></option>
                                 <option value="residential">Residential</option>
                                 <option value="commercial">Commercial</option>
@@ -152,20 +150,11 @@
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for="date" class="form-label">Date of Construction</label>
-                            <input type="date" id="date" class="form-control" required>
+                            <label for="constructionDate" class="form-label">Date of Construction</label>
+                            <input type="date" id="constructionDate" class="form-control" readonly>
                         </div>
                     </div>
                     <div class="col-md-7">
-                        <div class="mb-3">
-                            <label for="owner" class="form-label">Owner(s)</label>
-                            <select class="form-select" id="owner" aria-label="Default select example" required>
-                                <option selected disabled></option>
-                                <option data-tokens="bobS">Bob Smith</option>
-                                <option data-tokens="rickyH">Ricky Henare</option>
-                                <option data-tokens="trishB">Trish Brown</option>
-                            </select>
-                        </div>
                         <div class="mb-3">
                             <label class="form-label">Projects</label>
                             <table class="table">
@@ -189,6 +178,99 @@
                                 </tr>
                                 <tr>
                                     <td><a href="project.html">Electricity</a></td>
+                                    <td><input type="checkbox" class="form-check-input"></td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary">-</button>
+                                        <button type="button" class="btn btn-primary">Edit</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><a href="project.html">Plumbing</a></td>
+                                    <td><input type="checkbox" class="form-check-input"></td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary">-</button>
+                                        <button type="button" class="btn btn-primary">Edit</button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Create/Edit Building -->
+            <form ng-show="pages['createBuilding']">
+                <div class="row">
+                    <div class="col-10">
+                        <h2>Create Building</h2>
+                    </div>
+                    <div class="col">
+                        <button type="reset" class="btn btn-primary float-end">X</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="mb-3">
+                            <label for="owner" class="form-label">Owner(s)</label>
+                            <select class="form-select" id="owner" aria-label="Default select example" required>
+                                <option selected disabled></option>
+                                <option data-tokens="bobS">Bob Smith</option>
+                                <option data-tokens="rickyH">Ricky Henare</option>
+                                <option data-tokens="trishB">Trish Brown</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="address" class="form-label">Building Address</label>
+                            <input type="text" id="address" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="buildingType" class="form-label">Building Type</label>
+                            <select class="form-select" id="buildingType" aria-label="Default select example" required>
+                                <option selected disabled></option>
+                                <option value="residential">Residential</option>
+                                <option value="commercial">Commercial</option>
+                                <option value="industrial">Industrial</option>
+                                <option value="institutional">Institutional</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="date" class="form-label">Date of Construction</label>
+                            <input type="date" id="date" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="mb-3">
+                            <label class="form-label">Projects</label>
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Project</th>
+                                    <th scope="col">Completed</th>
+                                    <th scope="col">Action
+                                        <button type="button" class="btn btn-primary">+</button>
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td><a href="project.html">Scaffolding</a></td>
+                                    <td><input type="checkbox" class="form-check-input"></td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary">-</button>
+                                        <button type="button" class="btn btn-primary">Edit</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><a href="project.html">Electricity</a></td>
+                                    <td><input type="checkbox" class="form-check-input"></td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary">-</button>
+                                        <button type="button" class="btn btn-primary">Edit</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><a href="project.html">Plumbing</a></td>
                                     <td><input type="checkbox" class="form-check-input"></td>
                                     <td>
                                         <button type="button" class="btn btn-primary">-</button>
