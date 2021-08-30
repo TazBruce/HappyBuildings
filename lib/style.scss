@@ -1,0 +1,36 @@
+$primary: #0d6efd; // CHANGE THIS FOR MAIN INTERFACE COLOUR
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+table.table tbody tr td,
+table.table thead tr th,
+table.table thead {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+body {
+  background-color: #0d6efd; // THIS IS THE BACKGROUND
+}
+
+h2 {
+  text-align: center;
+}
+
+a {
+  color: black;
+  cursor: pointer
+}
+
+.nav-link {
+  cursor: pointer;
+}
+
+[ng\:cloak],
+[ng-cloak],
+[data-ng-cloak],
+[x-ng-cloak],
+.ng-cloak,
+.x-ng-cloak {
+  display: none !important;
+}
