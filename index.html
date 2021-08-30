@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 
 <html lang="en">
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-route.min.js"></script>
-    <script src="lib/script.js"></script>
-    <title>Happy Buildings</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js">
+	</script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-route.min.js">
+	</script>
+	<script src="lib/script.js">
+	</script>
+	<title>Happy Buildings</title>
 </head>
 
 <body ng-app="app" ng-controller="MainCtrl">
-<div class="container">
-    <div class="row"><br></div>
+	<div class="container">
+		<div class="row"><br></div>
     <div class="row">
         <div class="col"></div>
 
@@ -41,16 +45,16 @@
                 </nav>
             </div>
 
-            <!-- Login Page -->
+            <!-- Login Page REMEMBER TO ADD REQUIRED -->
             <form ng-show="pages['login']" ng-submit="login('buildingDirectory')">
                 <h2>Sign In</h2>
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
-                    <input type="email" id="email" class="form-control" required>
+                    <input type="email" id="email" class="form-control">
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
-                    <input type="password" id="password" class="form-control" required>
+                    <input type="password" id="password" class="form-control">
                 </div>
                 <div class="mb-3">
                     <a href="">Forgot Password?</a>
@@ -169,7 +173,7 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td><a href="project.html">Scaffolding</a></td>
+                                    <td><a href ng-click="changePage('viewProject')">Scaffolding</a></td>
                                     <td><input type="checkbox" class="form-check-input"></td>
                                     <td>
                                         <button type="button" class="btn btn-primary">-</button>
@@ -177,7 +181,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td><a href="project.html">Electricity</a></td>
+                                    <td><a href ng-click="changePage('viewProject')">Electricity</a></td>
                                     <td><input type="checkbox" class="form-check-input"></td>
                                     <td>
                                         <button type="button" class="btn btn-primary">-</button>
@@ -185,7 +189,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td><a href="project.html">Plumbing</a></td>
+                                    <td><a href ng-click="changePage('viewProject')">Plumbing</a></td>
                                     <td><input type="checkbox" class="form-check-input"></td>
                                     <td>
                                         <button type="button" class="btn btn-primary">-</button>
@@ -296,7 +300,178 @@
             </form>
 
             <!-- View Project -->
-
+			<div class="mb-3" ng-show="pages['viewProject']">
+				<div class="row">
+                    <div class="col-10">
+                        <h2>Project Name</h2>
+                    </div>
+                    <div class="col">
+                        <button type="button" ng-click="changePage('createProject')" class="btn btn-primary float-end">Edit</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="mb-3">
+                            <label for="buildingType" class="form-label">Project Status</label>
+                            <select class="form-select" id="projectStatus" aria-label="Default select example" disabled>
+                                <option selected disabled></option>
+                                <option value="unscheduled">Unscheduled</option>
+                                <option value="scheduled">Scheduled</option>
+                                <option value="current">Current</option>
+                                <option value="closed">Closed</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="startDate" class="form-label">Project Start Date</label>
+                            <input type="date" id="startDate" class="form-control" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="finishDate" class="form-label">Project Finish Date</label>
+                            <input type="date" id="finishDate" class="form-control" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="owner" class="form-label">Contractors(s)</label>
+                            <select class="form-select" id="contractors" aria-label="Default select example" disabled>
+                                <option selected disabled></option>
+                                <option data-tokens="bobS">Bob Smith</option>
+                                <option data-tokens="rickyH">Ricky Henare</option>
+                                <option data-tokens="trishB">Trish Brown</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="col">
+							<div class="mb-3 overflow-auto">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Task</th>
+                                    <th scope="col">Completed</th>
+                                    <th scope="col"><button type="button" class="btn btn-primary">+</button></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td><a href="project.html">Scaffolding</a></td>
+                                    <td><input type="checkbox" class="form-check-input"></td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary">-</button>
+                                        <button type="button" class="btn btn-primary">Edit</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><a href="project.html">Electricity</a></td>
+                                    <td><input type="checkbox" class="form-check-input"></td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary">-</button>
+                                        <button type="button" class="btn btn-primary">Edit</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><a href="project.html">Plumbing</a></td>
+                                    <td><input type="checkbox" class="form-check-input"></td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary">-</button>
+                                        <button type="button" class="btn btn-primary">Edit</button>
+                                    </td>
+                                </tr>
+								<tr>
+                                    <td><a href="project.html">Gas</a></td>
+                                    <td><input type="checkbox" class="form-check-input"></td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary">-</button>
+                                        <button type="button" class="btn btn-primary">Edit</button>
+                                    </td>
+                                </tr>
+								<tr>
+                                    <td><a href="project.html">Tiling</a></td>
+                                    <td><input type="checkbox" class="form-check-input"></td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary">-</button>
+                                        <button type="button" class="btn btn-primary">Edit</button>
+                                    </td>
+                                </tr>
+								<tr>
+                                    <td><a href="project.html">Tiling</a></td>
+                                    <td><input type="checkbox" class="form-check-input"></td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary">-</button>
+                                        <button type="button" class="btn btn-primary">Edit</button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+							</div>
+                        </div>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <div class="mb-3 overflow-auto" style="max-height: 200px">
+                            <table class="table" id="comments">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Comment</th>
+                                    <th scope="col">User</th>
+                                    <th scope="col">
+                                        <button type="button" class="btn btn-primary">+</button>
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>Missing Compliance Sheet</td>
+                                    <td><a href="signup.html">Ryan Hayes</a></td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary">-</button>
+                                        <button type="button" class="btn btn-primary">Edit</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Missing Compliance Sheet</td>
+                                    <td><a href="signup.html">Ryan Hayes</a></td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary">-</button>
+                                        <button type="button" class="btn btn-primary">Edit</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Missing Compliance Sheet</td>
+                                    <td><a href="signup.html">Ryan Hayes</a></td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary">-</button>
+                                        <button type="button" class="btn btn-primary">Edit</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Missing Compliance Sheet</td>
+                                    <td><a href="signup.html">Ryan Hayes</a></td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary">-</button>
+                                        <button type="button" class="btn btn-primary">Edit</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Missing Compliance Sheet</td>
+                                    <td><a href="signup.html">Ryan Hayes</a></td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary">-</button>
+                                        <button type="button" class="btn btn-primary">Edit</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Missing Compliance Sheet</td>
+                                    <td><a href="signup.html">Ryan Hayes</a></td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary">-</button>
+                                        <button type="button" class="btn btn-primary">Edit</button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Create</button>
+                    </div>
+                </div>
+			</div>
 
             <!-- Create/Edit Project -->
             <form ng-show="pages['createProject']">
@@ -454,9 +629,6 @@
                 </div>
             </form>
 
-            <!-- View Task -->
-
-
             <!-- Create/Edit Task -->
             <form ng-show="pages['createTask']">
                 <div class="row">
@@ -552,5 +724,3 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
-
