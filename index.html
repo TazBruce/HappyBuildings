@@ -34,21 +34,13 @@
                         </button>
                         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                             <div class="navbar-nav">
-                                <a class="nav-link" id="nav-signOut" ng-click="logout()">Sign Out</a>
-                                <a class="nav-link" id="nav-signUp" ng-click="changePage('createAccount')">Create
+                                <a class="nav-link" id="signOut" ng-click="logout()">Sign Out</a>
+                                <a class="nav-link" id="viewAccount"
+                                   ng-click="changePage('viewAccount')">My Account</a>
+                                <a class="nav-link" id="createAccount" ng-click="changePage('createAccount')">Create
                                     Account</a>
-                                <a class="nav-link active" id="nav-buildingDirectory"
-                                   ng-click="changePage('buildingDirectory')">Building Directory</a>
-                                <a class="nav-link" id="nav-createTask" ng-click="changePage('createTask')">Create
-                                    Task</a>
-                                <a class="nav-link" id="nav-createProject" ng-click="changePage('createProject')">Create
-                                    Project</a>
-                                <a class="nav-link" id="nav-createBuilding" ng-click="changePage('createBuilding')">Create
-                                    Building</a>
-                                <a class="nav-link" id="nav-viewAccount"
-                                   ng-click="changePage('viewAccount')">Account</a>
-                                <a class="nav-link" id="nav-viewBuilding" ng-click="changePage('viewBuilding')">View
-                                    Building</a>
+                                <a class="nav-link active" id="buildingDirectory"
+                                   ng-click="changePage('buildingDirectory')">Home</a>
                             </div>
                         </div>
                     </nav>
@@ -74,7 +66,7 @@
                 </form>
 
                 <!-- Reset Password -->
-                <form ng-show="pages['resetPassword']" ng-submit="changePage('login')">
+                <form ng-show="pages['resetPassword']" ng-submit="submit(this.form, 'buildingDirectory')">
                     <div class="mb-3">
                         <button type="button" class="btn btn-outline-primary float-start" ng-click="goBack()"><i
                                 class="bi bi-arrow-left"></i></button>
@@ -98,9 +90,12 @@
                 </form>
 
                 <!-- Building Directory -->
-                <form ng-show="pages['buildingDirectory']">
+                <div ng-show="pages['buildingDirectory']">
                     <div class="row">
-                        <div class="col-12">
+                        <div class="mb-3">
+                            <button type="button" ng-click="changePage('createBuilding')"
+                                    class="btn btn-primary float-end"><i class="bi bi-plus-lg"></i>
+                            </button>
                             <h2>Building Directory</h2>
                         </div>
                     </div>
@@ -115,42 +110,30 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td>Ryan Hayes</td>
+                                    <td><a href ng-click="changePage('viewAccount')">Ryan Hayes</a></td>
                                     <td><a href ng-click="changePage('viewBuilding')">19 Boulcott Street</a></td>
                                 </tr>
                                 <tr>
-                                    <td>Hannah Brown</td>
+                                    <td><a href ng-click="changePage('viewAccount')">Natasha Brown</a></td>
                                     <td><a href ng-click="changePage('viewBuilding')">23 Cuba Street</a></td>
                                 </tr>
                                 <tr>
-                                    <td>Hannah Brown</td>
+                                    <td><a href ng-click="changePage('viewAccount')">Jeff Carpenter</a></td>
                                     <td><a href ng-click="changePage('viewBuilding')">23 Cuba Street</a></td>
                                 </tr>
                                 <tr>
-                                    <td>Hannah Brown</td>
+                                    <td><a href ng-click="changePage('viewAccount')">Riley Fawcett</a></td>
                                     <td><a href ng-click="changePage('viewBuilding')">23 Cuba Street</a></td>
                                 </tr>
                                 <tr>
-                                    <td>Hannah Brown</td>
-                                    <td><a href ng-click="changePage('viewBuilding')">23 Cuba Street</a></td>
-                                </tr>
-                                <tr>
-                                    <td>Hannah Brown</td>
-                                    <td><a href ng-click="changePage('viewBuilding')">23 Cuba Street</a></td>
-                                </tr>
-                                <tr>
-                                    <td>Hannah Brown</td>
-                                    <td><a href ng-click="changePage('viewBuilding')">23 Cuba Street</a></td>
-                                </tr>
-                                <tr>
-                                    <td>Hannah Brown</td>
+                                    <td><a href ng-click="changePage('viewAccount')">Bob Smith</a></td>
                                     <td><a href ng-click="changePage('viewBuilding')">23 Cuba Street</a></td>
                                 </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                </form>
+                </div>
 
                 <!-- View Building -->
                 <div ng-show="pages['viewBuilding']">
@@ -222,13 +205,13 @@
                 </div>
 
                 <!-- Create/Edit Building -->
-                <form ng-show="pages['createBuilding']">
+                <form ng-show="pages['createBuilding']" ng-submit="submit(this.form, 'viewBuilding')">
                     <div class="row">
                         <div class="mb-3">
                             <button type="button" class="btn btn-outline-primary float-start" ng-click="goBack()"><i
                                     class="bi bi-arrow-left"></i></button>
                             <button type="reset" class="btn btn-danger float-end"><i class="bi bi-trash"></i></button>
-                            <h2>Create Building</h2>
+                            <h2>Create/Edit Building</h2>
                         </div>
                     </div>
                     <div class="row">
@@ -370,10 +353,10 @@
                                     <thead>
                                     <tr>
                                         <th scope="col">Comment</th>
-                                        <th scope="col">User</th>
+                                        <th scope="col">Author</th>
                                         <th scope="col">
                                             <button type="button" ng-click="changePage('createComment')"
-                                                    class="btn btn-primary">+
+                                                    class="btn btn-primary"><i class="bi bi-plus-lg"></i>
                                             </button>
                                         </th>
                                     </tr>
@@ -383,32 +366,48 @@
                                         <td>Missing Compliance Sheet</td>
                                         <td><a href ng-click="changePage('viewAccount')">Ryan Hayes</a></td>
                                         <td>
-                                            <button type="button" class="btn btn-primary">-</button>
-                                            <button type="button" class="btn btn-primary">Edit</button>
+                                            <button type="button" ng-click="changePage('createComment')"
+                                                    class="btn btn-primary">
+                                                <i class="bi bi-pencil-square"></i>
+                                            </button>
+                                            <button type="reset" class="btn btn-danger"><i class="bi bi-trash"></i>
+                                            </button>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Missing Compliance Sheet</td>
                                         <td><a href ng-click="changePage('viewAccount')">Ryan Hayes</a></td>
                                         <td>
-                                            <button type="button" class="btn btn-primary">-</button>
-                                            <button type="button" class="btn btn-primary">Edit</button>
+                                            <button type="button" ng-click="changePage('createComment')"
+                                                    class="btn btn-primary">
+                                                <i class="bi bi-pencil-square"></i>
+                                            </button>
+                                            <button type="reset" class="btn btn-danger"><i class="bi bi-trash"></i>
+                                            </button>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Missing Compliance Sheet</td>
                                         <td><a href ng-click="changePage('viewAccount')">Ryan Hayes</a></td>
                                         <td>
-                                            <button type="button" class="btn btn-primary">-</button>
-                                            <button type="button" class="btn btn-primary">Edit</button>
+                                            <button type="button" ng-click="changePage('createComment')"
+                                                    class="btn btn-primary">
+                                                <i class="bi bi-pencil-square"></i>
+                                            </button>
+                                            <button type="reset" class="btn btn-danger"><i class="bi bi-trash"></i>
+                                            </button>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Missing Compliance Sheet</td>
                                         <td><a href ng-click="changePage('viewAccount')">Ryan Hayes</a></td>
                                         <td>
-                                            <button type="button" class="btn btn-primary">-</button>
-                                            <button type="button" class="btn btn-primary">Edit</button>
+                                            <button type="button" ng-click="changePage('createComment')"
+                                                    class="btn btn-primary">
+                                                <i class="bi bi-pencil-square"></i>
+                                            </button>
+                                            <button type="reset" class="btn btn-danger"><i class="bi bi-trash"></i>
+                                            </button>
                                         </td>
                                     </tr>
                                     <tr>
@@ -417,16 +416,24 @@
                                             <a href ng-click="changePage('viewAccount')">Ryan Hayes</a>
                                         </td>
                                         <td>
-                                            <button type="button" class="btn btn-primary">-</button>
-                                            <button type="button" class="btn btn-primary">Edit</button>
+                                            <button type="button" ng-click="changePage('createComment')"
+                                                    class="btn btn-primary">
+                                                <i class="bi bi-pencil-square"></i>
+                                            </button>
+                                            <button type="reset" class="btn btn-danger"><i class="bi bi-trash"></i>
+                                            </button>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Missing Compliance Sheet</td>
                                         <td><a href ng-click="changePage('viewAccount')">Ryan Hayes</a></td>
                                         <td>
-                                            <button type="button" class="btn btn-primary">-</button>
-                                            <button type="button" class="btn btn-primary">Edit</button>
+                                            <button type="button" ng-click="changePage('createComment')"
+                                                    class="btn btn-primary">
+                                                <i class="bi bi-pencil-square"></i>
+                                            </button>
+                                            <button type="reset" class="btn btn-danger"><i class="bi bi-trash"></i>
+                                            </button>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -439,13 +446,13 @@
                 </div>
 
                 <!-- Create/Edit Project -->
-                <form ng-show="pages['createProject']" ng-submit="changePage('viewProject')">
+                <form ng-show="pages['createProject']" ng-submit="submit(this.form, 'viewProject')">
                     <div class="row">
                         <div class="mb-3">
                             <button type="button" class="btn btn-outline-primary float-start" ng-click="goBack()"><i
                                     class="bi bi-arrow-left"></i></button>
                             <button type="reset" class="btn btn-danger float-end"><i class="bi bi-trash"></i></button>
-                            <h2>Create Project</h2>
+                            <h2>Create/Edit Project</h2>
                         </div>
                     </div>
                     <div class="row">
@@ -510,13 +517,13 @@
                 </form>
 
                 <!-- Create/Edit Task -->
-                <form ng-show="pages['createTask']" ng-submit="changePage('createProject')">
+                <form ng-show="pages['createTask']" ng-submit="submit(this.form, 'createProject')">
                     <div class="row">
-                        <div class="col-10">
-                            <h2>Create Task</h2>
-                        </div>
-                        <div class="col">
-                            <button type="reset" class="btn btn-primary float-end">X</button>
+                        <div class="mb-3">
+                            <button type="button" class="btn btn-outline-primary float-start" ng-click="goBack()"><i
+                                    class="bi bi-arrow-left"></i></button>
+                            <button type="reset" class="btn btn-danger float-end"><i class="bi bi-trash"></i></button>
+                            <h2>Create/Edit Task</h2>
                         </div>
                     </div>
                     <div class="row">
@@ -541,13 +548,13 @@
                 </form>
 
                 <!-- Create/Edit Comment -->
-                <form ng-show="pages['createComment']" ng-submit="changePage('viewProject')">
+                <form ng-show="pages['createComment']" ng-submit="submit(this.form, 'viewProject')">
                     <div class="row">
-                        <div class="col-10">
-                            <h2>Create Comment</h2>
-                        </div>
-                        <div class="col">
-                            <button type="reset" class="btn btn-primary float-end">X</button>
+                        <div class="mb-3">
+                            <button type="button" class="btn btn-outline-primary float-start" ng-click="goBack()"><i
+                                    class="bi bi-arrow-left"></i></button>
+                            <button type="reset" class="btn btn-danger float-end"><i class="bi bi-trash"></i></button>
+                            <h2>Create/Edit Comment</h2>
                         </div>
                     </div>
                     <div class="row">
@@ -564,13 +571,14 @@
                 <!-- View Account -->
                 <form ng-show="pages['viewAccount']">
                     <div class="row">
-                        <div class="col-10">
-                            <h2>Account</h2>
-                        </div>
-                        <div class="col">
+                        <div class="mb-3">
+                            <button type="button" class="btn btn-outline-primary float-start" ng-click="goBack()"><i
+                                    class="bi bi-arrow-left"></i></button>
                             <button type="button" ng-click="changePage('createAccount')"
-                                    class="btn btn-primary float-end">Edit
+                                    class="btn btn-primary float-end">
+                                <i class="bi bi-pencil-square"></i>
                             </button>
+                            <h2>View Account</h2>
                         </div>
                     </div>
                     <div class="mb-3">
@@ -597,13 +605,13 @@
                 </form>
 
                 <!-- Create/Edit Account -->
-                <form ng-show="pages['createAccount']" ng-submit="changePage('buildingDirectory')">
+                <form ng-show="pages['createAccount']" ng-submit="submit(this.form, 'viewAccount')">
                     <div class="row">
-                        <div class="col-10">
+                        <div class="mb-3">
+                            <button type="button" class="btn btn-outline-primary float-start" ng-click="goBack()"><i
+                                    class="bi bi-arrow-left"></i></button>
+                            <button type="reset" class="btn btn-danger float-end"><i class="bi bi-trash"></i></button>
                             <h2>Create/Edit Account</h2>
-                        </div>
-                        <div class="col">
-                            <button type="reset" class="btn btn-primary float-end">X</button>
                         </div>
                     </div>
                     <div class="mb-3">
