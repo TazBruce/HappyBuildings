@@ -12,5 +12,8 @@
     <orderEntry type="library" name="bootstrap-icons" level="application" />
     <orderEntry type="library" name="angular-route" level="application" />
     <orderEntry type="library" name="angular" level="application" />
+    <orderEntry type="library" name="jquery" level="application" />
+    <orderEntry type="library" name="select2" level="application" />
+    <orderEntry type="library" name="select2-bootstrap-5-theme" level="application" />
   </component>
 </module>

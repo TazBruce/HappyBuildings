@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="node_modules/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="lib/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.1.1/dist/select2-bootstrap-5-theme.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="node_modules/angular/angular.min.js"></script>
@@ -155,17 +159,15 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="buildingOwner" class="form-label">Owner(s)</label>
-                                <select class="form-select" id="buildingOwner" aria-label="Default select example"
-                                        disabled>
-                                    <option selected disabled></option>
-                                    <option data-tokens="bobS">Bob Smith</option>
-                                    <option data-tokens="rickyH">Ricky Henare</option>
-                                    <option data-tokens="trishB">Trish Brown</option>
+                                <select class="select2-search" style="width: 100%;" id="buildingOwner" aria-label="Default select example" multiple="multiple" disabled>
+                                    <option value="Bob Smith" selected>Bob Smith</option>
+                                    <option value="Ricky Henare">Ricky Henare</option>
+                                    <option value="Trish Brown">Trish Brown</option>
                                 </select>
                             </div>
                             <div class="mb-3">
                                 <label for="type" class="form-label">Building Type</label>
-                                <select class="form-select" id="type" aria-label="Default select example" disabled>
+                                <select class="form-select" id="type" style="width: 100%;" aria-label="Default select example" disabled>
                                     <option selected disabled></option>
                                     <option value="residential">Residential</option>
                                     <option value="commercial">Commercial</option>
@@ -233,11 +235,10 @@
                         <div class="col-md-5">
                             <div class="mb-3">
                                 <label for="owner" class="form-label">Owner(s)</label>
-                                <select class="form-select" id="owner" aria-label="Default select example" required>
-                                    <option selected disabled></option>
-                                    <option data-tokens="bobS">Bob Smith</option>
-                                    <option data-tokens="rickyH">Ricky Henare</option>
-                                    <option data-tokens="trishB">Trish Brown</option>
+                                <select class="select2-search" style="width: 100%;" id="owner" aria-label="Default select example" multiple="multiple" required>
+                                    <option value="Bob Smith">Bob Smith</option>
+                                    <option value="Ricky Henare">Ricky Henare</option>
+                                    <option value="Trish Brown">Trish Brown</option>
                                 </select>
                             </div>
                             <div class="mb-3">
@@ -246,7 +247,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="buildingType" class="form-label">Building Type</label>
-                                <select class="form-select" id="buildingType" aria-label="Default select example"
+                                <select class="form-select" style="width: 100%;" id="buildingType" aria-label="Default select example"
                                         required>
                                     <option selected disabled></option>
                                     <option value="residential">Residential</option>
@@ -355,6 +356,18 @@
                                     <tr>
                                         <td>Gas</td>
                                         <td>Done</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tiling</td>
+                                        <td>Cancelled</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tiling</td>
+                                        <td>Cancelled</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tiling</td>
+                                        <td>Cancelled</td>
                                     </tr>
                                     <tr>
                                         <td>Tiling</td>
@@ -480,7 +493,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="buildingType" class="form-label">Project Status</label>
-                                <select class="form-select" id="projectStatus" aria-label="Default select example"
+                                <select class="form-select" style="width: 100%;" id="projectStatus" aria-label="Default select example"
                                         required>
                                     <option selected disabled></option>
                                     <option value="unscheduled">Unscheduled</option>
@@ -498,13 +511,11 @@
                                 <input type="date" id="finishDate" class="form-control">
                             </div>
                             <div class="mb-3">
-                                <label for="owner" class="form-label">Contractors(s)</label>
-                                <select class="form-select" id="contractors" aria-label="Default select example"
-                                        required>
-                                    <option selected disabled></option>
-                                    <option data-tokens="bobS">Bob Smith</option>
-                                    <option data-tokens="rickyH">Ricky Henare</option>
-                                    <option data-tokens="trishB">Trish Brown</option>
+                                <label for="contractors" class="form-label">Contractors(s)</label>
+                                <select class="select2-search" style="width: 100%;" id="contractors" aria-label="Default select example" multiple="multiple" required>
+                                    <option value="Bob Smith" selected>Bob Smith</option>
+                                    <option value="Ricky Henare">Ricky Henare</option>
+                                    <option value="Trish Brown">Trish Brown</option>
                                 </select>
                             </div>
                         </div>
@@ -550,7 +561,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="status" class="form-label">Status</label>
-                            <select class="form-select" id="status" aria-label="Default select example" required>
+                            <select class="form-select" id="status" style="width: 100%;" aria-label="Default select example" required>
                                 <option selected disabled></option>
                                 <option value="done">Done</option>
                                 <option value="on-going">On-going</option>
@@ -600,7 +611,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="viewAccountType" class="form-label">Account Type</label>
-                        <select class="form-select" id="viewAccountType" aria-label="Default select example" disabled>
+                        <select class="form-select" style="width: 100%;" id="viewAccountType" aria-label="Default select example" disabled>
                             <option selected disabled></option>
                             <option value="manager">Manager</option>
                             <option value="owner">Owner</option>
@@ -633,7 +644,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="accountType" class="form-label">Account Type</label>
-                        <select class="form-select" id="accountType" aria-label="Default select example" required>
+                        <select class="form-select" id="accountType" style="width: 100%;" aria-label="Default select example" required>
                             <option selected disabled></option>
                             <option value="manager">Manager</option>
                             <option value="owner">Owner</option>
