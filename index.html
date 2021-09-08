@@ -10,9 +10,10 @@
     <link rel="stylesheet" href="node_modules/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="lib/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"/>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.1.1/dist/select2-bootstrap-5-theme.min.css" />
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.1.1/dist/select2-bootstrap-5-theme.min.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="node_modules/angular/angular.min.js"></script>
@@ -41,11 +42,11 @@
                         </button>
                         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                             <div class="navbar-nav">
-								<a class="nav-link active" id="buildingDirectory"
-                                   ng-click="changePage('buildingDirectory')">Home</a>
+                                <a class="nav-link active" id="buildingDirectory"
+                                   ng-click="useNavBar('buildingDirectory')">Home</a>
                                 <a class="nav-link" id="viewAccount"
-                                   ng-click="changePage('viewAccount')">My Account</a>
-                                <a class="nav-link" id="createAccount" ng-click="changePage('createAccount')">Create
+                                   ng-click="useNavBar('viewAccount')">My Account</a>
+                                <a class="nav-link" id="createAccount" ng-click="useNavBar('createAccount')">Create
                                     Account</a>
                             </div>
                         </div>
@@ -158,7 +159,8 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="buildingOwner" class="form-label">Owner(s)</label>
-                                <select class="select2-search" style="width: 100%;" id="buildingOwner" aria-label="Default select example" multiple="multiple" disabled>
+                                <select class="select2-search" style="width: 100%;" id="buildingOwner"
+                                        aria-label="Default select example" multiple="multiple" disabled>
                                     <option value="Bob Smith" selected>Bob Smith</option>
                                     <option value="Ricky Henare">Ricky Henare</option>
                                     <option value="Trish Brown">Trish Brown</option>
@@ -166,7 +168,8 @@
                             </div>
                             <div class="mb-3">
                                 <label for="type" class="form-label">Building Type</label>
-                                <select class="form-select" id="type" style="width: 100%;" aria-label="Default select example" disabled>
+                                <select class="form-select" id="type" style="width: 100%;"
+                                        aria-label="Default select example" disabled>
                                     <option selected disabled></option>
                                     <option value="residential">Residential</option>
                                     <option value="commercial">Commercial</option>
@@ -234,7 +237,8 @@
                         <div class="col-md-5">
                             <div class="mb-3">
                                 <label for="owner" class="form-label">Owner(s)</label>
-                                <select class="select2-search" style="width: 100%;" id="owner" aria-label="Default select example" multiple="multiple" required>
+                                <select class="select2-search" style="width: 100%;" id="owner"
+                                        aria-label="Default select example" multiple="multiple" required>
                                     <option value="Bob Smith">Bob Smith</option>
                                     <option value="Ricky Henare">Ricky Henare</option>
                                     <option value="Trish Brown">Trish Brown</option>
@@ -246,7 +250,8 @@
                             </div>
                             <div class="mb-3">
                                 <label for="buildingType" class="form-label">Building Type</label>
-                                <select class="form-select" style="width: 100%;" id="buildingType" aria-label="Default select example"
+                                <select class="form-select" style="width: 100%;" id="buildingType"
+                                        aria-label="Default select example"
                                         required>
                                     <option selected disabled></option>
                                     <option value="residential">Residential</option>
@@ -302,7 +307,7 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="buildingType" class="form-label">Project Status</label>
-                                <select class="form-select" id="readProjectStatus" aria-label="Default select example"
+                                <select class="form-select" style="width: 100%;" id="readProjectStatus" aria-label="Default select example"
                                         disabled>
                                     <option selected disabled></option>
                                     <option value="unscheduled">Unscheduled</option>
@@ -321,7 +326,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="owner" class="form-label">Contractors(s)</label>
-                                <select class="form-select" id="readContractors" aria-label="Default select example"
+                                <select class="form-select" style="width: 100%;" id="readContractors" aria-label="Default select example"
                                         disabled>
                                     <option selected disabled></option>
                                     <option data-tokens="bobS">Bob Smith</option>
@@ -492,7 +497,8 @@
                             </div>
                             <div class="mb-3">
                                 <label for="buildingType" class="form-label">Project Status</label>
-                                <select class="form-select" style="width: 100%;" id="projectStatus" aria-label="Default select example"
+                                <select class="form-select" style="width: 100%;" id="projectStatus"
+                                        aria-label="Default select example"
                                         required>
                                     <option selected disabled></option>
                                     <option value="unscheduled">Unscheduled</option>
@@ -511,7 +517,8 @@
                             </div>
                             <div class="mb-3">
                                 <label for="contractors" class="form-label">Contractors(s)</label>
-                                <select class="select2-search" style="width: 100%;" id="contractors" aria-label="Default select example" multiple="multiple" required>
+                                <select class="select2-search" style="width: 100%;" id="contractors"
+                                        aria-label="Default select example" multiple="multiple" required>
                                     <option value="Bob Smith" selected>Bob Smith</option>
                                     <option value="Ricky Henare">Ricky Henare</option>
                                     <option value="Trish Brown">Trish Brown</option>
@@ -560,7 +567,8 @@
                         </div>
                         <div class="mb-3">
                             <label for="status" class="form-label">Status</label>
-                            <select class="form-select" id="status" style="width: 100%;" aria-label="Default select example" required>
+                            <select class="form-select" id="status" style="width: 100%;"
+                                    aria-label="Default select example" required>
                                 <option selected disabled></option>
                                 <option value="done">Done</option>
                                 <option value="on-going">On-going</option>
@@ -610,7 +618,8 @@
                     </div>
                     <div class="mb-3">
                         <label for="viewAccountType" class="form-label">Account Type</label>
-                        <select class="form-select" style="width: 100%;" id="viewAccountType" aria-label="Default select example" disabled>
+                        <select class="form-select" style="width: 100%;" id="viewAccountType"
+                                aria-label="Default select example" disabled>
                             <option selected disabled></option>
                             <option value="manager">Manager</option>
                             <option value="owner">Owner</option>
@@ -630,7 +639,7 @@
                         <input type="email" id="viewSignupEmail" class="form-control" readonly>
                     </div>
                     <div class="d-grid gap-2">
-                      <button type="submit" ng-click="logout('')" class="btn btn-primary">Sign Out</button>
+                        <button type="submit" ng-click="logout('')" class="btn btn-primary">Sign Out</button>
                     </div>
                 </form>
 
@@ -646,7 +655,8 @@
                     </div>
                     <div class="mb-3">
                         <label for="accountType" class="form-label">Account Type</label>
-                        <select class="form-select" id="accountType" style="width: 100%;" aria-label="Default select example" required>
+                        <select class="form-select" id="accountType" style="width: 100%;"
+                                aria-label="Default select example" required>
                             <option selected disabled></option>
                             <option value="manager">Manager</option>
                             <option value="owner">Owner</option>
