@@ -97,6 +97,91 @@
 					</div>
 				</form>
 
+				<!-- View Account -->
+				<form ng-show="pages['viewAccount']">
+					<div class="row">
+						<div class="mb-3">
+							<button type="button" class="btn btn-outline-primary float-start" ng-click="goBack()"><i
+									class="bi bi-arrow-left"></i></button>
+							<button type="button" ng-click="changePage('createAccount')"
+									class="btn btn-primary float-end">
+								<i class="bi bi-pencil-square"></i>
+							</button>
+							<h2>View Account</h2>
+						</div>
+					</div>
+					<div class="mb-3">
+						<label for="viewAccountType" class="form-label">Account Type</label>
+						<select class="form-select" style="width: 100%;" id="viewAccountType"
+								aria-label="Default select example" disabled>
+							<option selected disabled></option>
+							<option value="manager">Manager</option>
+							<option value="owner">Owner</option>
+							<option value="contractor">Contractor</option>
+						</select>
+					</div>
+					<div class="mb-3">
+						<label for="viewFirstName" class="form-label">First Name</label>
+						<input type="text" id="viewFirstName" class="form-control" readonly>
+					</div>
+					<div class="mb-3">
+						<label for="viewLastName" class="form-label">Last Name</label>
+						<input type="text" id="viewLastName" class="form-control" readonly>
+					</div>
+					<div class="mb-3">
+						<label for="viewSignupEmail" class="form-label">Email</label>
+						<input type="email" id="viewSignupEmail" class="form-control" readonly>
+					</div>
+					<div class="d-grid gap-2">
+						<button type="submit" ng-click="logout('')" class="btn btn-primary">Sign Out</button>
+					</div>
+				</form>
+
+				<!-- Create/Edit Account -->
+				<form ng-show="pages['createAccount']" ng-submit="submit(this.form, 'viewAccount')">
+					<div class="row">
+						<div class="mb-3">
+							<button type="button" class="btn btn-outline-primary float-start" ng-click="goBack()"><i
+									class="bi bi-arrow-left"></i></button>
+							<button type="reset" class="btn btn-danger float-end"><i class="bi bi-trash"></i></button>
+							<h2>Create/Edit Account</h2>
+						</div>
+					</div>
+					<div class="mb-3">
+						<label for="accountType" class="form-label">Account Type</label>
+						<select class="form-select" id="accountType" style="width: 100%;"
+								aria-label="Default select example" required>
+							<option selected disabled></option>
+							<option value="manager">Manager</option>
+							<option value="owner">Owner</option>
+							<option value="contractor">Contractor</option>
+						</select>
+					</div>
+					<div class="mb-3">
+						<label for="firstname" class="form-label">First Name</label>
+						<input type="text" id="firstname" class="form-control" required>
+					</div>
+					<div class="mb-3">
+						<label for="lastname" class="form-label">Last Name</label>
+						<input type="text" id="lastname" class="form-control" required>
+					</div>
+					<div class="mb-3">
+						<label for="signup-email" class="form-label">Email</label>
+						<input type="email" id="signup-email" class="form-control" required>
+					</div>
+					<div class="mb-3">
+						<label for="signup-password" class="form-label">Password</label>
+						<input type="password" id="signup-password" class="form-control" required>
+					</div>
+					<div class="mb-3">
+						<label for="signup-passwordConfirm" class="form-label">Re-confirm Password</label>
+						<input type="password" id="signup-passwordConfirm" class="form-control" required>
+					</div>
+					<div class="d-grid gap-2">
+						<button type="submit" class="btn btn-primary">Create</button>
+					</div>
+				</form>
+
 				<!-- Building Directory -->
 				<div ng-show="pages['buildingDirectory']">
 					<div class="row">
@@ -601,91 +686,6 @@
 						<div class="d-grid gap-2">
 							<button type="submit" class="btn btn-primary">Create</button>
 						</div>
-					</div>
-				</form>
-
-				<!-- View Account -->
-				<form ng-show="pages['viewAccount']">
-					<div class="row">
-						<div class="mb-3">
-							<button type="button" class="btn btn-outline-primary float-start" ng-click="goBack()"><i
-									class="bi bi-arrow-left"></i></button>
-							<button type="button" ng-click="changePage('createAccount')"
-									class="btn btn-primary float-end">
-								<i class="bi bi-pencil-square"></i>
-							</button>
-							<h2>View Account</h2>
-						</div>
-					</div>
-					<div class="mb-3">
-						<label for="viewAccountType" class="form-label">Account Type</label>
-						<select class="form-select" style="width: 100%;" id="viewAccountType"
-								aria-label="Default select example" disabled>
-							<option selected disabled></option>
-							<option value="manager">Manager</option>
-							<option value="owner">Owner</option>
-							<option value="contractor">Contractor</option>
-						</select>
-					</div>
-					<div class="mb-3">
-						<label for="viewFirstName" class="form-label">First Name</label>
-						<input type="text" id="viewFirstName" class="form-control" readonly>
-					</div>
-					<div class="mb-3">
-						<label for="viewLastName" class="form-label">Last Name</label>
-						<input type="text" id="viewLastName" class="form-control" readonly>
-					</div>
-					<div class="mb-3">
-						<label for="viewSignupEmail" class="form-label">Email</label>
-						<input type="email" id="viewSignupEmail" class="form-control" readonly>
-					</div>
-					<div class="d-grid gap-2">
-						<button type="submit" ng-click="logout('')" class="btn btn-primary">Sign Out</button>
-					</div>
-				</form>
-
-				<!-- Create/Edit Account -->
-				<form ng-show="pages['createAccount']" ng-submit="submit(this.form, 'viewAccount')">
-					<div class="row">
-						<div class="mb-3">
-							<button type="button" class="btn btn-outline-primary float-start" ng-click="goBack()"><i
-									class="bi bi-arrow-left"></i></button>
-							<button type="reset" class="btn btn-danger float-end"><i class="bi bi-trash"></i></button>
-							<h2>Create/Edit Account</h2>
-						</div>
-					</div>
-					<div class="mb-3">
-						<label for="accountType" class="form-label">Account Type</label>
-						<select class="form-select" id="accountType" style="width: 100%;"
-								aria-label="Default select example" required>
-							<option selected disabled></option>
-							<option value="manager">Manager</option>
-							<option value="owner">Owner</option>
-							<option value="contractor">Contractor</option>
-						</select>
-					</div>
-					<div class="mb-3">
-						<label for="firstname" class="form-label">First Name</label>
-						<input type="text" id="firstname" class="form-control" required>
-					</div>
-					<div class="mb-3">
-						<label for="lastname" class="form-label">Last Name</label>
-						<input type="text" id="lastname" class="form-control" required>
-					</div>
-					<div class="mb-3">
-						<label for="signup-email" class="form-label">Email</label>
-						<input type="email" id="signup-email" class="form-control" required>
-					</div>
-					<div class="mb-3">
-						<label for="signup-password" class="form-label">Password</label>
-						<input type="password" id="signup-password" class="form-control" required>
-					</div>
-					<div class="mb-3">
-						<label for="signup-passwordConfirm" class="form-label">Re-confirm Password</label>
-						<input type="password" id="signup-passwordConfirm" class="form-control" required>
-					</div>
-					<div class="d-grid gap-2">
-						<button type="submit" class="btn btn-primary">Create</button>
 					</div>
 				</form>
 			</div>
