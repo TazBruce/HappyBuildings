@@ -202,25 +202,9 @@
 								</tr>
 								</thead>
 								<tbody>
-								<tr>
-									<td><a href ng-click="changePage('viewAccount')">Ryan Hayes</a></td>
-									<td><a href ng-click="changePage('viewBuilding')">19 Boulcott Street</a></td>
-								</tr>
-								<tr>
-									<td><a href ng-click="changePage('viewAccount')">Natasha Brown</a></td>
-									<td><a href ng-click="changePage('viewBuilding')">23 Cuba Street</a></td>
-								</tr>
-								<tr>
-									<td><a href ng-click="changePage('viewAccount')">Jeff Carpenter</a></td>
-									<td><a href ng-click="changePage('viewBuilding')">23 Cuba Street</a></td>
-								</tr>
-								<tr>
-									<td><a href ng-click="changePage('viewAccount')">Riley Fawcett</a></td>
-									<td><a href ng-click="changePage('viewBuilding')">23 Cuba Street</a></td>
-								</tr>
-								<tr>
-									<td><a href ng-click="changePage('viewAccount')">Bob Smith</a></td>
-									<td><a href ng-click="changePage('viewBuilding')">23 Cuba Street</a></td>
+								<tr ng-repeat="building in buildings">
+									<td><a href ng-click="changePage('viewAccount')">{{building.Owner}}</a></td>
+									<td><a href ng-click="changePage('viewBuilding')">{{building.Address}}</a></td>
 								</tr>
 								</tbody>
 							</table>
