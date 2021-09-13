@@ -44,8 +44,8 @@
 							<div class="navbar-nav">
 								<a class="nav-link active" id="buildingDirectory"
 								   ng-click="useNavBar('buildingDirectory')">Home</a>
-								<a class="nav-link" id="viewAccount"
-								   ng-click="useNavBar('viewAccount')">My Account</a>
+								<a class="nav-link" id="myAccount"
+								   ng-click="useNavBar('myAccount')">My Account</a>
 								<a class="nav-link" id="createAccount" ng-click="useNavBar('createAccount')">Create
 									Account</a>
 							</div>
@@ -57,8 +57,8 @@
 				<form ng-show="pages['login']" ng-submit="login('buildingDirectory')">
 					<h2>Sign In</h2>
 					<div class="mb-3">
-						<label for="email" class="form-label">Email</label>
-						<input type="text" id="email" class="form-control" required>
+						<label for="username" class="form-label">Username</label>
+						<input type="text" id="username" class="form-control" required>
 					</div>
 					<div class="mb-3">
 						<label for="password" class="form-label">Password</label>
@@ -132,6 +132,35 @@
 						<label for="viewSignupEmail" class="form-label">Email</label>
 						<input type="email" id="viewSignupEmail" class="form-control" readonly>
 					</div>
+				</form>
+
+				<!-- View Personal Account -->
+				<form ng-show="pages['myAccount']">
+					<div class="row">
+						<div class="mb-3">
+							<button type="button" class="btn btn-outline-primary float-start" ng-click="goBack()"><i
+									class="bi bi-arrow-left"></i></button>
+							<button type="button" ng-click="changePage('createAccount')"
+									class="btn btn-primary float-end">
+								<i class="bi bi-pencil-square"></i>
+							</button>
+							<h2>View Account</h2>
+						</div>
+					</div>
+					<div class="mb-3">
+						<label for="viewOwnAccountType" class="form-label">Account Type</label>
+						<select class="form-select" style="width: 100%;" id="viewOwnAccountType"
+								aria-label="Default select example" ng-model="loggedUser['UserType']" disabled>
+							<option value="" ng-selected="true" disabled></option>
+							<option value="manager">Manager</option>
+							<option value="owner">Owner</option>
+							<option value="contractor">Contractor</option>
+						</select>
+					</div>
+					<div class="mb-3">
+						<label for="viewLoginName" class="form-label">Username</label>
+						<input type="text" id="viewLoginName" class="form-control" ng-model="loggedUser['LoginName']" readonly>
+					</div>
 					<div class="d-grid gap-2">
 						<button type="submit" ng-click="logout('')" class="btn btn-primary">Sign Out</button>
 					</div>
@@ -186,7 +215,7 @@
 				<div ng-show="pages['buildingDirectory']">
 					<div class="row">
 						<div class="mb-3">
-							<button type="button" ng-click="changePage('createBuilding')"
+							<button type="button" ng-click="modifyBuilding(true)"
 									class="btn btn-primary float-end"><i class="bi bi-plus-lg"></i>
 							</button>
 							<h2>Building Directory</h2>
@@ -197,14 +226,16 @@
 							<table class="table table-striped table-hover" id="buildings">
 								<thead class="table-dark">
 								<tr>
-									<th scope="col">Owner(s)</th>
+									<th scope="col">ID</th>
+									<th scope="col">Owner</th>
 									<th scope="col">Address</th>
 								</tr>
 								</thead>
 								<tbody>
 								<tr ng-repeat="building in buildings">
+									<td><a href ng-click="changePage('viewBuilding', building.ID)">{{building.ID}}</a></td>
 									<td><a href ng-click="changePage('viewAccount')">{{building.Owner}}</a></td>
-									<td><a href ng-click="changePage('viewBuilding')">{{building.Address}}</a></td>
+									<td><a href ng-click="changePage('viewBuilding', building.ID)">{{building.Address}}</a></td>
 								</tr>
 								</tbody>
 							</table>
@@ -219,41 +250,40 @@
 							<button type="button" class="btn btn-outline-primary float-start" ng-click="goBack()"><i
 									class="bi bi-arrow-left"></i></button>
 							<button type="button" class="btn btn-primary float-end"
-									ng-click="changePage('createBuilding')">
+									ng-click="modifyBuilding(false)">
 								<i class="bi bi-pencil-square"></i>
 							</button>
-							<h2>Address</h2>
+							<h2>{{selectedBuilding['Address']}}</h2>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-6">
 							<div class="mb-3">
-								<label for="buildingOwner" class="form-label">Owner(s)</label>
-								<select class="select2-search" style="width: 100%;" id="buildingOwner"
-										aria-label="Default select example" multiple="multiple" disabled>
-									<option value="Bob Smith" selected>Bob Smith</option>
-									<option value="Ricky Henare">Ricky Henare</option>
-									<option value="Trish Brown">Trish Brown</option>
-								</select>
+								<label for="buildingID" class="form-label">ID</label>
+								<input type="text" id="buildingID" class="form-control" ng-model="selectedBuilding['ID']" readonly>
+							</div>
+							<div class="mb-3">
+								<label for="buildingOwner" class="form-label">Owner</label>
+								<input type="text" id="buildingOwner" class="form-control" ng-model="selectedBuilding['Owner']" readonly>
 							</div>
 							<div class="mb-3">
 								<label for="type" class="form-label">Building Type</label>
 								<select class="form-select" id="type" style="width: 100%;"
-										aria-label="Default select example" disabled>
-									<option selected disabled></option>
-									<option value="residential">Residential</option>
-									<option value="commercial">Commercial</option>
-									<option value="industrial">Industrial</option>
-									<option value="institutional">Institutional</option>
+										aria-label="Default select example" ng-model="selectedBuilding['BuildingType']" disabled>
+									<option ng-selected="true" value=null disabled></option>
+									<option value="Residential">Residential</option>
+									<option value="Commercial">Commercial</option>
+									<option value="Industrial">Industrial</option>
+									<option value="Institutional">Institutional</option>
 								</select>
 							</div>
 							<div class="mb-3">
 								<label for="constructionDate" class="form-label">Date of Construction</label>
-								<input type="date" id="constructionDate" class="form-control" readonly>
+								<input type="text" id="constructionDate" class="form-control" ng-model="selectedBuilding['ConstructionDate']" readonly>
 							</div>
 						</div>
 						<div class="col-md-6">
-							<div class="mb-3 overflow-auto" style="max-height: 260px;">
+							<div class="mb-3 overflow-auto" style="max-height: 330px;">
 								<table class="table table-striped table-hover">
 									<thead>
 									<tr>
@@ -286,6 +316,10 @@
 										<td><a href ng-click="changePage('viewProject')">Plumbing</a></td>
 										<td>Scheduled</td>
 									</tr>
+									<tr>
+										<td><a href ng-click="changePage('viewProject')">Plumbing</a></td>
+										<td>Scheduled</td>
+									</tr>
 									</tbody>
 								</table>
 							</div>
@@ -294,25 +328,24 @@
 				</div>
 
 				<!-- Create/Edit Building -->
-				<form ng-show="pages['createBuilding']" ng-submit="submit(this.form, 'viewBuilding')">
+				<form ng-show="pages['createBuilding']" ng-submit="submitBuilding('viewBuilding')">
 					<div class="row">
 						<div class="mb-3">
 							<button type="button" class="btn btn-outline-primary float-start" ng-click="goBack()"><i
 									class="bi bi-arrow-left"></i></button>
 							<button type="reset" class="btn btn-danger float-end"><i class="bi bi-trash"></i></button>
-							<h2>Create/Edit Building</h2>
+							<h2>{{buildingTitle}}</h2>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-5">
 							<div class="mb-3">
-								<label for="owner" class="form-label">Owner(s)</label>
-								<select class="select2-search" style="width: 100%;" id="owner"
-										aria-label="Default select example" multiple="multiple" required>
-									<option value="Bob Smith">Bob Smith</option>
-									<option value="Ricky Henare">Ricky Henare</option>
-									<option value="Trish Brown">Trish Brown</option>
-								</select>
+								<label for="ID" class="form-label">ID</label>
+								<input type="number" id="ID" class="form-control" ng-model="buildingID" readonly>
+							</div>
+							<div class="mb-3">
+								<label for="owner" class="form-label">Owner</label>
+								<input type="text" id="owner" class="form-control" required>
 							</div>
 							<div class="mb-3">
 								<label for="address" class="form-label">Building Address</label>
@@ -320,19 +353,18 @@
 							</div>
 							<div class="mb-3">
 								<label for="buildingType" class="form-label">Building Type</label>
-								<select class="form-select" style="width: 100%;" id="buildingType"
-										aria-label="Default select example"
-										required>
-									<option selected disabled></option>
-									<option value="residential">Residential</option>
-									<option value="commercial">Commercial</option>
-									<option value="industrial">Industrial</option>
-									<option value="institutional">Institutional</option>
+								<select class="form-select" id="buildingType" style="width: 100%;"
+										aria-label="Default select example" ng-model="selectedBuilding['BuildingType']">
+									<option ng-selected="true" value=null disabled></option>
+									<option value="Residential">Residential</option>
+									<option value="Commercial">Commercial</option>
+									<option value="Industrial">Industrial</option>
+									<option value="Institutional">Institutional</option>
 								</select>
 							</div>
 							<div class="mb-3">
 								<label for="date" class="form-label">Date of Construction</label>
-								<input type="date" id="date" class="form-control" required>
+								<input type="datetime-local" id="date" class="form-control" required>
 							</div>
 						</div>
 						<div class="col-md-7">
@@ -355,6 +387,7 @@
 							</div>
 						</div>
 						<div class="d-grid gap-2">
+							<div id="buildingFeedback" style="color: red;" class="form-text"></div>
 							<button type="submit" class="btn btn-primary">Create</button>
 						</div>
 					</div>
