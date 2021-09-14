@@ -292,33 +292,9 @@
 									</tr>
 									</thead>
 									<tbody>
-									<tr>
-										<td><a href ng-click="changePage('viewProject')">Scaffolding</a></td>
-										<td>Closed</td>
-									</tr>
-									<tr>
-										<td><a href ng-click="changePage('viewProject')">Electricity</a></td>
-										<td>Current</td>
-									</tr>
-									<tr>
-										<td><a href ng-click="changePage('viewProject')">Plumbing</a></td>
-										<td>Scheduled</td>
-									</tr>
-									<tr>
-										<td><a href ng-click="changePage('viewProject')">Plumbing</a></td>
-										<td>Scheduled</td>
-									</tr>
-									<tr>
-										<td><a href ng-click="changePage('viewProject')">Plumbing</a></td>
-										<td>Scheduled</td>
-									</tr>
-									<tr>
-										<td><a href ng-click="changePage('viewProject')">Plumbing</a></td>
-										<td>Scheduled</td>
-									</tr>
-									<tr>
-										<td><a href ng-click="changePage('viewProject')">Plumbing</a></td>
-										<td>Scheduled</td>
+									<tr ng-repeat="project in projects[selectedBuilding['ID']]">
+										<td><a href ng-click="changePage('viewProject')">{{project.Name}}</a></td>
+										<td>{{project.Status}}</td>
 									</tr>
 									</tbody>
 								</table>
