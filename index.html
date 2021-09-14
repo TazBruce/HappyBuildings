@@ -151,7 +151,7 @@
 						<label for="viewOwnAccountType" class="form-label">Account Type</label>
 						<select class="form-select" style="width: 100%;" id="viewOwnAccountType"
 								aria-label="Default select example" ng-model="loggedUser['UserType']" disabled>
-							<option value="" ng-selected="true" disabled></option>
+							<option ng-selected="true" value=null disabled></option>
 							<option value="manager">Manager</option>
 							<option value="owner">Owner</option>
 							<option value="contractor">Contractor</option>
@@ -215,7 +215,7 @@
 				<div ng-show="pages['buildingDirectory']">
 					<div class="row">
 						<div class="mb-3">
-							<button type="button" ng-click="modifyBuilding(true)"
+							<button type="button" ng-show="loggedUser['UserType'] === 'manager'" ng-click="modifyBuilding(true)"
 									class="btn btn-primary float-end"><i class="bi bi-plus-lg"></i>
 							</button>
 							<h2>Building Directory</h2>
@@ -232,7 +232,7 @@
 								</tr>
 								</thead>
 								<tbody>
-								<tr ng-repeat="building in buildings">
+								<tr ng-repeat="building in buildings | orderBy:toNumber:false">
 									<td><a href ng-click="changePage('viewBuilding', building.ID)">{{building.ID}}</a></td>
 									<td><a href ng-click="changePage('viewAccount')">{{building.Owner}}</a></td>
 									<td><a href ng-click="changePage('viewBuilding', building.ID)">{{building.Address}}</a></td>
@@ -249,7 +249,7 @@
 						<div class="mb-3">
 							<button type="button" class="btn btn-outline-primary float-start" ng-click="goBack()"><i
 									class="bi bi-arrow-left"></i></button>
-							<button type="button" class="btn btn-primary float-end"
+							<button type="button" class="btn btn-primary float-end" ng-show="loggedUser['UserType'] === 'manager'"
 									ng-click="modifyBuilding(false)">
 								<i class="bi bi-pencil-square"></i>
 							</button>
@@ -333,7 +333,6 @@
 						<div class="mb-3">
 							<button type="button" class="btn btn-outline-primary float-start" ng-click="goBack()"><i
 									class="bi bi-arrow-left"></i></button>
-							<button type="reset" class="btn btn-danger float-end"><i class="bi bi-trash"></i></button>
 							<h2>{{buildingTitle}}</h2>
 						</div>
 					</div>
@@ -399,7 +398,7 @@
 						<div class="mb-3">
 							<button type="button" class="btn btn-outline-primary float-start" ng-click="goBack()"><i
 									class="bi bi-arrow-left"></i></button>
-							<button type="button" ng-click="changePage('createProject')"
+							<button type="button" ng-show="loggedUser['UserType'] === 'manager'" ng-click="changePage('createProject')"
 									class="btn btn-primary float-end">
 								<i class="bi bi-pencil-square"></i>
 							</button>
