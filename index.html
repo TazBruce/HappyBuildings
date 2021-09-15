@@ -4,16 +4,16 @@
 
 <head>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-	<link rel="stylesheet" href="node_modules/bootstrap-icons/font/bootstrap-icons.css">
-	<link rel="stylesheet" href="lib/style.css">
+	<meta content="width=device-width, initial-scale=1" name="viewport">
+	<link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet">
+	<link href="node_modules/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+	<link href="lib/style.css" rel="stylesheet">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"/>
+	<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
 	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-	<link rel="stylesheet"
-		  href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.1.1/dist/select2-bootstrap-5-theme.min.css"/>
+	<link href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.1.1/dist/select2-bootstrap-5-theme.min.css"
+		  rel="stylesheet"/>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="node_modules/angular/angular.min.js"></script>
@@ -35,9 +35,9 @@
 				<!-- Navigation Bar -->
 				<div class="mb-3" ng-show="loggedIn">
 					<nav class="navbar navbar-expand-lg navbar-dark bg-primary px-2 rounded">
-						<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-								data-bs-target="#navbar" aria-controls="navbar"
-								aria-expanded="false" aria-label="Toggle navigation">
+						<button aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation"
+								class="navbar-toggler" data-bs-target="#navbar"
+								data-bs-toggle="collapse" type="button">
 							<span class="navbar-toggler-icon"></span>
 						</button>
 						<div class="collapse navbar-collapse" id="navbar">
@@ -55,43 +55,43 @@
 				<form ng-show="pages['login']" ng-submit="login('buildingDirectory')">
 					<h2>Sign In</h2>
 					<div class="mb-3">
-						<label for="username" class="form-label">Username</label>
-						<input type="text" id="username" class="form-control" required>
+						<label class="form-label" for="username">Username</label>
+						<input class="form-control" id="username" required type="text">
 					</div>
 					<div class="mb-3">
-						<label for="password" class="form-label">Password</label>
-						<input type="password" id="password" class="form-control" required>
+						<label class="form-label" for="password">Password</label>
+						<input class="form-control" id="password" required type="password">
 					</div>
 					<div class="mb-3">
 						<a href ng-click="changePage('resetPassword')">Forgot Password?</a>
-						<div id="feedback" style="color: red;" class="form-text"></div>
+						<div class="form-text" id="feedback" style="color: red;"></div>
 					</div>
 					<div class="d-grid gap-2">
-						<button type="submit" class="btn btn-primary">Login</button>
+						<button class="btn btn-primary" type="submit">Login</button>
 					</div>
 				</form>
 
 				<!-- Reset Password -->
 				<form ng-show="pages['resetPassword']" ng-submit="submit(this.form, 'login')">
 					<div class="mb-3">
-						<button type="button" class="btn btn-outline-primary float-start" ng-click="goBack()"><i
+						<button class="btn btn-outline-primary float-start" ng-click="goBack()" type="button"><i
 								class="bi bi-arrow-left"></i></button>
 						<h2>Reset Password</h2>
 					</div>
 					<div class="mb-3">
-						<label for="resetEmail" class="form-label">Email</label>
-						<input type="email" id="resetEmail" class="form-control" required>
+						<label class="form-label" for="resetEmail">Email</label>
+						<input class="form-control" id="resetEmail" required type="email">
 					</div>
 					<div class="mb-3">
-						<label for="resetPassword" class="form-label">New Password</label>
-						<input type="password" id="resetPassword" class="form-control" required>
+						<label class="form-label" for="resetPassword">New Password</label>
+						<input class="form-control" id="resetPassword" required type="password">
 					</div>
 					<div class="mb-3">
-						<label for="resetPasswordConfirm" class="form-label">Re-Confirm Password</label>
-						<input type="password" id="resetPasswordConfirm" class="form-control" required>
+						<label class="form-label" for="resetPasswordConfirm">Re-Confirm Password</label>
+						<input class="form-control" id="resetPasswordConfirm" required type="password">
 					</div>
 					<div class="d-grid gap-2">
-						<button type="submit" class="btn btn-primary">Reset Password</button>
+						<button class="btn btn-primary" type="submit">Reset Password</button>
 					</div>
 				</form>
 
@@ -99,36 +99,36 @@
 				<form ng-show="pages['viewAccount']">
 					<div class="row">
 						<div class="mb-3">
-							<button type="button" class="btn btn-outline-primary float-start" ng-click="goBack()"><i
+							<button class="btn btn-outline-primary float-start" ng-click="goBack()" type="button"><i
 									class="bi bi-arrow-left"></i></button>
-							<button type="button" ng-click="changePage('createAccount')"
-									class="btn btn-primary float-end">
+							<button class="btn btn-primary float-end" ng-click="changePage('createAccount')"
+									type="button">
 								<i class="bi bi-pencil-square"></i>
 							</button>
 							<h2>View Account</h2>
 						</div>
 					</div>
 					<div class="mb-3">
-						<label for="viewAccountType" class="form-label">Account Type</label>
-						<select class="form-select" style="width: 100%;" id="viewAccountType"
-								aria-label="Default select example" disabled>
-							<option selected disabled></option>
+						<label class="form-label" for="viewAccountType">Account Type</label>
+						<select aria-label="Default select example" class="form-select" disabled
+								id="viewAccountType" style="width: 100%;">
+							<option disabled selected></option>
 							<option value="manager">Manager</option>
 							<option value="owner">Owner</option>
 							<option value="contractor">Contractor</option>
 						</select>
 					</div>
 					<div class="mb-3">
-						<label for="viewFirstName" class="form-label">First Name</label>
-						<input type="text" id="viewFirstName" class="form-control" readonly>
+						<label class="form-label" for="viewFirstName">First Name</label>
+						<input class="form-control" id="viewFirstName" readonly type="text">
 					</div>
 					<div class="mb-3">
-						<label for="viewLastName" class="form-label">Last Name</label>
-						<input type="text" id="viewLastName" class="form-control" readonly>
+						<label class="form-label" for="viewLastName">Last Name</label>
+						<input class="form-control" id="viewLastName" readonly type="text">
 					</div>
 					<div class="mb-3">
-						<label for="viewSignupEmail" class="form-label">Email</label>
-						<input type="email" id="viewSignupEmail" class="form-control" readonly>
+						<label class="form-label" for="viewSignupEmail">Email</label>
+						<input class="form-control" id="viewSignupEmail" readonly type="email">
 					</div>
 				</form>
 
@@ -136,32 +136,32 @@
 				<form ng-show="pages['myAccount']">
 					<div class="row">
 						<div class="mb-3">
-							<button type="button" class="btn btn-outline-primary float-start" ng-click="goBack()"><i
+							<button class="btn btn-outline-primary float-start" ng-click="goBack()" type="button"><i
 									class="bi bi-arrow-left"></i></button>
-							<button type="button" ng-click="changePage('createAccount')"
-									class="btn btn-primary float-end">
+							<button class="btn btn-primary float-end" ng-click="changePage('createAccount')"
+									type="button">
 								<i class="bi bi-pencil-square"></i>
 							</button>
 							<h2>My Account</h2>
 						</div>
 					</div>
 					<div class="mb-3">
-						<label for="viewOwnAccountType" class="form-label">Account Type</label>
-						<select class="form-select" style="width: 100%;" id="viewOwnAccountType"
-								aria-label="Default select example" ng-model="loggedUser['UserType']" disabled>
-							<option ng-selected="true" value=null disabled></option>
+						<label class="form-label" for="viewOwnAccountType">Account Type</label>
+						<select aria-label="Default select example" class="form-select" disabled
+								id="viewOwnAccountType" ng-model="loggedUser['UserType']" style="width: 100%;">
+							<option disabled ng-selected="true" value=null></option>
 							<option value="manager">Manager</option>
 							<option value="owner">Owner</option>
 							<option value="contractor">Contractor</option>
 						</select>
 					</div>
 					<div class="mb-3">
-						<label for="viewLoginName" class="form-label">Username</label>
-						<input type="text" id="viewLoginName" class="form-control" ng-model="loggedUser['LoginName']"
-							   readonly>
+						<label class="form-label" for="viewLoginName">Username</label>
+						<input class="form-control" id="viewLoginName" ng-model="loggedUser['LoginName']" readonly
+							   type="text">
 					</div>
 					<div class="d-grid gap-2">
-						<button type="submit" ng-click="logout('')" class="btn btn-primary">Sign Out</button>
+						<button class="btn btn-primary" ng-click="logout('')" type="submit">Sign Out</button>
 					</div>
 				</form>
 
@@ -169,9 +169,9 @@
 				<div ng-show="pages['buildingDirectory']">
 					<div class="row">
 						<div class="mb-3">
-							<button type="button" ng-show="loggedUser['UserType'] === 'manager'"
-									ng-click="modifyBuilding(true)"
-									class="btn btn-primary float-end"><i class="bi bi-plus-lg"></i>
+							<button class="btn btn-primary float-end" ng-click="modifyBuilding(true)"
+									ng-show="loggedUser['UserType'] === 'manager'"
+									type="button"><i class="bi bi-plus-lg"></i>
 							</button>
 							<h2>Building Directory</h2>
 						</div>
@@ -202,11 +202,11 @@
 				<div ng-show="pages['viewBuilding']">
 					<div class="row">
 						<div class="mb-3">
-							<button type="button" class="btn btn-outline-primary float-start" ng-click="goBack()"><i
+							<button class="btn btn-outline-primary float-start" ng-click="goBack()" type="button"><i
 									class="bi bi-arrow-left"></i></button>
-							<button type="button" class="btn btn-primary float-end"
+							<button class="btn btn-primary float-end" ng-click="modifyBuilding(false)"
 									ng-show="loggedUser['UserType'] === 'manager'"
-									ng-click="modifyBuilding(false)">
+									type="button">
 								<i class="bi bi-pencil-square"></i>
 							</button>
 							<h2>{{selectedBuilding['Address']}}</h2>
@@ -215,21 +215,21 @@
 					<div class="row">
 						<div class="col-md-6">
 							<div class="mb-3">
-								<label for="buildingID" class="form-label">ID</label>
-								<input type="text" id="buildingID" class="form-control"
-									   ng-model="selectedBuilding['ID']" readonly>
+								<label class="form-label" for="buildingID">ID</label>
+								<input class="form-control" id="buildingID" ng-model="selectedBuilding['ID']"
+									   readonly type="text">
 							</div>
 							<div class="mb-3">
-								<label for="buildingOwner" class="form-label">Owner</label>
-								<input type="text" id="buildingOwner" class="form-control"
-									   ng-model="selectedBuilding['Owner']" readonly>
+								<label class="form-label" for="buildingOwner">Owner</label>
+								<input class="form-control" id="buildingOwner" ng-model="selectedBuilding['Owner']"
+									   readonly type="text">
 							</div>
 							<div class="mb-3">
-								<label for="type" class="form-label">Building Type</label>
-								<select class="form-select" id="type" style="width: 100%;"
-										aria-label="Default select example" ng-model="selectedBuilding['BuildingType']"
-										disabled>
-									<option ng-selected="true" value=null disabled></option>
+								<label class="form-label" for="type">Building Type</label>
+								<select aria-label="Default select example" class="form-select" disabled
+										id="type" ng-model="selectedBuilding['BuildingType']"
+										style="width: 100%;">
+									<option disabled ng-selected="true" value=null></option>
 									<option value="Residential">Residential</option>
 									<option value="Commercial">Commercial</option>
 									<option value="Industrial">Industrial</option>
@@ -237,9 +237,9 @@
 								</select>
 							</div>
 							<div class="mb-3">
-								<label for="constructionDate" class="form-label">Date of Construction</label>
-								<input type="text" id="constructionDate" class="form-control"
-									   ng-model="selectedBuilding['ConstructionDate']" readonly>
+								<label class="form-label" for="constructionDate">Date of Construction</label>
+								<input class="form-control" id="constructionDate" ng-model="selectedBuilding['ConstructionDate']"
+									   readonly type="text">
 							</div>
 						</div>
 						<div class="col-md-6">
@@ -267,7 +267,7 @@
 				<form ng-show="pages['createBuilding']" ng-submit="submitBuilding('editBuilding', true)">
 					<div class="row">
 						<div class="mb-3">
-							<button type="button" class="btn btn-outline-primary float-start" ng-click="goBack()"><i
+							<button class="btn btn-outline-primary float-start" ng-click="goBack()" type="button"><i
 									class="bi bi-arrow-left"></i></button>
 							<h2>Create Building</h2>
 						</div>
@@ -275,22 +275,23 @@
 					<div class="row">
 						<div class="col-md">
 							<div class="mb-3">
-								<label for="create-buildingID" class="form-label">ID</label>
-								<input type="number" id="create-buildingID" class="form-control" ng-model="buildingID" readonly>
+								<label class="form-label" for="create-buildingID">ID</label>
+								<input class="form-control" id="create-buildingID" ng-model="buildingID" readonly
+									   type="number">
 							</div>
 							<div class="mb-3">
-								<label for="create-owner" class="form-label">Owner</label>
-								<input type="text" id="create-owner" class="form-control" required>
+								<label class="form-label" for="create-owner">Owner</label>
+								<input class="form-control" id="create-owner" required type="text">
 							</div>
 							<div class="mb-3">
-								<label for="create-address" class="form-label">Building Address</label>
-								<input type="text" id="create-address" class="form-control" required>
+								<label class="form-label" for="create-address">Building Address</label>
+								<input class="form-control" id="create-address" required type="text">
 							</div>
 							<div class="mb-3">
-								<label for="create-buildingType" class="form-label">Building Type</label>
-								<select class="form-select" id="create-buildingType" style="width: 100%;"
-										aria-label="Default select example" required>
-									<option selected value=null disabled></option>
+								<label class="form-label" for="create-buildingType">Building Type</label>
+								<select aria-label="Default select example" class="form-select" id="create-buildingType"
+										required style="width: 100%;">
+									<option disabled selected value=null></option>
 									<option value="Residential">Residential</option>
 									<option value="Commercial">Commercial</option>
 									<option value="Industrial">Industrial</option>
@@ -298,14 +299,14 @@
 								</select>
 							</div>
 							<div class="mb-3">
-								<label for="create-date" class="form-label">Date of Construction</label>
-								<input type="datetime-local" id="create-date" class="form-control" required>
+								<label class="form-label" for="create-date">Date of Construction</label>
+								<input class="form-control" id="create-date" required type="datetime-local">
 							</div>
 						</div>
 					</div>
 					<div class="d-grid gap-2">
-						<div id="createBuildingFeedback" style="color: red;" class="form-text"></div>
-						<button type="submit" class="btn btn-primary">Create</button>
+						<div class="form-text" id="createBuildingFeedback" style="color: red;"></div>
+						<button class="btn btn-primary" type="submit">Create</button>
 					</div>
 				</form>
 
@@ -313,7 +314,7 @@
 				<form ng-show="pages['editBuilding']" ng-submit="submitBuilding('viewBuilding', false)">
 					<div class="row">
 						<div class="mb-3">
-							<button type="button" class="btn btn-outline-primary float-start" ng-click="goBack()"><i
+							<button class="btn btn-outline-primary float-start" ng-click="goBack()" type="button"><i
 									class="bi bi-arrow-left"></i></button>
 							<h2>Edit Building</h2>
 						</div>
@@ -321,22 +322,24 @@
 					<div class="row">
 						<div class="col-md-6">
 							<div class="mb-3">
-								<label for="ID" class="form-label">ID</label>
-								<input type="number" id="ID" class="form-control" ng-model="buildingID" readonly>
+								<label class="form-label" for="ID">ID</label>
+								<input class="form-control" id="ID" ng-model="buildingID" readonly type="number">
 							</div>
 							<div class="mb-3">
-								<label for="owner" class="form-label">Owner</label>
-								<input type="text" id="owner" class="form-control" ng-model="selectedBuilding['Owner']" required>
+								<label class="form-label" for="owner">Owner</label>
+								<input class="form-control" id="owner" ng-model="selectedBuilding['Owner']" required
+									   type="text">
 							</div>
 							<div class="mb-3">
-								<label for="address" class="form-label">Building Address</label>
-								<input type="text" id="address" class="form-control" ng-model="selectedBuilding['Address']" required>
+								<label class="form-label" for="address">Building Address</label>
+								<input class="form-control" id="address" ng-model="selectedBuilding['Address']"
+									   required type="text">
 							</div>
 							<div class="mb-3">
-								<label for="buildingType" class="form-label">Building Type</label>
-								<select class="form-select" id="buildingType" style="width: 100%;"
-										aria-label="Default select example" ng-model="selectedBuilding['BuildingType']">
-									<option ng-selected="true" value=null disabled></option>
+								<label class="form-label" for="buildingType">Building Type</label>
+								<select aria-label="Default select example" class="form-select" id="buildingType"
+										ng-model="selectedBuilding['BuildingType']" style="width: 100%;">
+									<option disabled ng-selected="true" value=null></option>
 									<option value="Residential">Residential</option>
 									<option value="Commercial">Commercial</option>
 									<option value="Industrial">Industrial</option>
@@ -344,8 +347,9 @@
 								</select>
 							</div>
 							<div class="mb-3">
-								<label for="date" class="form-label">Date of Construction</label>
-								<input type="text" id="date" class="form-control" ng-model="selectedBuilding['ConstructionDate']" required>
+								<label class="form-label" for="date">Date of Construction</label>
+								<input class="form-control" id="date" ng-model="selectedBuilding['ConstructionDate']"
+									   required type="text">
 							</div>
 						</div>
 						<div class="col-md-6">
@@ -356,8 +360,8 @@
 										<th scope="col">Project</th>
 										<th scope="col">Status</th>
 										<th scope="col">
-											<button type="button" ng-click="modifyProject(true)"
-													class="btn btn-primary"><i class="bi bi-plus-lg"></i>
+											<button class="btn btn-primary" ng-click="modifyProject(true)"
+													type="button"><i class="bi bi-plus-lg"></i>
 											</button>
 										</th>
 									</tr>
@@ -367,11 +371,12 @@
 										<td><a href ng-click="viewProject(project, false)">{{project.Name}}</a></td>
 										<td>{{project.Status}}</td>
 										<td>
-											<button type="button" ng-click="viewProject(project, true)"
-													class="btn btn-primary"><i
+											<button class="btn btn-primary" ng-click="viewProject(project, true)"
+													type="button"><i
 													class="bi bi-pencil-square"></i>
 											</button>
-											<button type="button" ng-click="deleteProject(project)" class="btn btn-danger"><i class="bi bi-trash"></i>
+											<button class="btn btn-danger" ng-click="deleteProject(project)"
+													type="button"><i class="bi bi-trash"></i>
 											</button>
 										</td>
 									</tr>
@@ -380,8 +385,8 @@
 							</div>
 						</div>
 						<div class="d-grid gap-2">
-							<div id="buildingFeedback" style="color: red;" class="form-text"></div>
-							<button type="submit" class="btn btn-primary">Save</button>
+							<div class="form-text" id="buildingFeedback" style="color: red;"></div>
+							<button class="btn btn-primary" type="submit">Save</button>
 						</div>
 					</div>
 				</form>
@@ -390,11 +395,11 @@
 				<div class="mb-3" ng-show="pages['viewProject']">
 					<div class="row">
 						<div class="mb-3">
-							<button type="button" class="btn btn-outline-primary float-start" ng-click="goBack()"><i
+							<button class="btn btn-outline-primary float-start" ng-click="goBack()" type="button"><i
 									class="bi bi-arrow-left"></i></button>
-							<button type="button" ng-show="loggedUser['UserType'] === 'manager'"
-									ng-click="modifyProject(false)"
-									class="btn btn-primary float-end">
+							<button class="btn btn-primary float-end" ng-click="modifyProject(false)"
+									ng-show="loggedUser['UserType'] === 'manager'"
+									type="button">
 								<i class="bi bi-pencil-square"></i>
 							</button>
 							<h2>{{selectedProject['Name']}}</h2>
@@ -403,16 +408,16 @@
 					<div class="row">
 						<div class="col-md-6">
 							<div class="mb-3">
-								<label for="projectID" class="form-label">ID</label>
-								<input type="text" id="projectID" class="form-control"
-									   ng-model="selectedProject['ProjectID']" readonly>
+								<label class="form-label" for="projectID">ID</label>
+								<input class="form-control" id="projectID" ng-model="selectedProject['ProjectID']"
+									   readonly type="text">
 							</div>
 							<div class="mb-3">
-								<label for="readProjectStatus" class="form-label">Project Status</label>
-								<select class="form-select" style="width: 100%;" id="readProjectStatus"
-										aria-label="Default select example" ng-model="selectedProject['Status']"
-										disabled>
-									<option ng-selected="true" value="null" disabled></option>
+								<label class="form-label" for="readProjectStatus">Project Status</label>
+								<select aria-label="Default select example" class="form-select" disabled
+										id="readProjectStatus" ng-model="selectedProject['Status']"
+										style="width: 100%;">
+									<option disabled ng-selected="true" value="null"></option>
 									<option value="unscheduled">Unscheduled</option>
 									<option value="scheduled">Scheduled</option>
 									<option value="current">Current</option>
@@ -420,24 +425,29 @@
 								</select>
 							</div>
 							<div class="mb-3">
-								<label for="readStartDate" class="form-label">Project Start Date</label>
-								<input type="text" id="readStartDate" class="form-control" ng-model="selectedProject['StartDate']" readonly>
+								<label class="form-label" for="readStartDate">Project Start Date</label>
+								<input class="form-control" id="readStartDate" ng-model="selectedProject['StartDate']"
+									   readonly type="text">
 							</div>
 							<div class="mb-3">
-								<label for="readFinishDate" class="form-label">Project Finish Date</label>
-								<input type="text" id="readFinishDate" class="form-control" ng-model="selectedProject['EndDate']" readonly>
+								<label class="form-label" for="readFinishDate">Project Finish Date</label>
+								<input class="form-control" id="readFinishDate" ng-model="selectedProject['EndDate']"
+									   readonly type="text">
 							</div>
 							<div class="mb-3">
-								<label for="contactPerson" class="form-label">Contact Person</label>
-								<input type="text" id="contactPerson" class="form-control" ng-model="selectedProject['ContactPerson']" readonly>
+								<label class="form-label" for="contactPerson">Contact Person</label>
+								<input class="form-control" id="contactPerson" ng-model="selectedProject['ContactPerson']"
+									   readonly type="text">
 							</div>
 							<div class="mb-3">
-								<label for="projectManager" class="form-label">Project Manager</label>
-								<input type="text" id="projectManager" class="form-control" ng-model="selectedProject['ProjectManager']" readonly>
+								<label class="form-label" for="projectManager">Project Manager</label>
+								<input class="form-control" id="projectManager" ng-model="selectedProject['ProjectManager']"
+									   readonly type="text">
 							</div>
 							<div class="mb-3">
-								<label for="contractor" class="form-label">Contractor</label>
-								<input type="text" id="contractor" class="form-control" ng-model="selectedProject['Contractor']" readonly>
+								<label class="form-label" for="contractor">Contractor</label>
+								<input class="form-control" id="contractor" ng-model="selectedProject['Contractor']"
+									   readonly type="text">
 							</div>
 						</div>
 						<div class="col-md-6">
@@ -448,8 +458,8 @@
 										<th scope="col">Work</th>
 										<th scope="col">Status</th>
 										<th scope="col">
-											<button type="button" ng-click="modifyWork()"
-													class="btn btn-primary"><i class="bi bi-plus-lg"></i>
+											<button class="btn btn-primary" ng-click="modifyWork()"
+													type="button"><i class="bi bi-plus-lg"></i>
 											</button>
 										</th>
 									</tr>
@@ -459,11 +469,12 @@
 										<td>{{work['TypeOfWork']}}</td>
 										<td>{{work['Status']}}</td>
 										<td>
-											<button type="button" ng-click="modifyWork(work)"
-													class="btn btn-primary"><i
+											<button class="btn btn-primary" ng-click="modifyWork(work)"
+													type="button"><i
 													class="bi bi-pencil-square"></i>
 											</button>
-											<button type="button" ng-click="deleteWork(work)" class="btn btn-danger"><i class="bi bi-trash"></i>
+											<button class="btn btn-danger" ng-click="deleteWork(work)" type="button"><i
+													class="bi bi-trash"></i>
 											</button>
 										</td>
 									</tr>
@@ -479,8 +490,8 @@
 										<th scope="col">Comment</th>
 										<th scope="col">Author</th>
 										<th scope="col">
-											<button type="button" ng-click="modifyComment()"
-													class="btn btn-primary"><i class="bi bi-plus-lg"></i>
+											<button class="btn btn-primary" ng-click="modifyComment()"
+													type="button"><i class="bi bi-plus-lg"></i>
 											</button>
 										</th>
 									</tr>
@@ -490,18 +501,19 @@
 										<td>{{comment['Text']}}</td>
 										<td><a href ng-click="changePage('viewAccount')">{{comment['Author']}}</a></td>
 										<td>
-											<button type="button" ng-click="modifyComment(comment)"
-													class="btn btn-primary">
+											<button class="btn btn-primary" ng-click="modifyComment(comment)"
+													type="button">
 												<i class="bi bi-pencil-square"></i>
 											</button>
-											<button type="button" ng-click="deleteComment(comment)" class="btn btn-danger"><i class="bi bi-trash"></i>
+											<button class="btn btn-danger" ng-click="deleteComment(comment)"
+													type="button"><i class="bi bi-trash"></i>
 											</button>
 										</td>
 									</tr>
 									</tbody>
 								</table>
 							</div>
-							<button type="submit" ng-click="changePage('viewBuilding')" class="btn btn-primary">Done
+							<button class="btn btn-primary" ng-click="changePage('viewBuilding')" type="submit">Done
 							</button>
 						</div>
 					</div>
@@ -511,7 +523,7 @@
 				<form ng-show="pages['createProject']" ng-submit="submitProject('viewProject', true)">
 					<div class="row">
 						<div class="mb-3">
-							<button type="button" class="btn btn-outline-primary float-start" ng-click="goBack()"><i
+							<button class="btn btn-outline-primary float-start" ng-click="goBack()" type="button"><i
 									class="bi bi-arrow-left"></i></button>
 							<h2>Create Project</h2>
 						</div>
@@ -519,39 +531,39 @@
 					<div class="row">
 						<div class="col-md">
 							<div class="mb-3">
-								<label for="create-projectID" class="form-label">Project ID</label>
-								<input type="text" id="create-projectID" class="form-control"
-									   ng-model="projectID" readonly>
+								<label class="form-label" for="create-projectID">Project ID</label>
+								<input class="form-control" id="create-projectID" ng-model="projectID"
+									   readonly type="text">
 							</div>
 							<div class="mb-3">
-								<label for="create-projectName" class="form-label">Project Name</label>
-								<input type="text" id="create-projectName" class="form-control" required>
+								<label class="form-label" for="create-projectName">Project Name</label>
+								<input class="form-control" id="create-projectName" required type="text">
 							</div>
 							<div class="row">
 								<div class="col">
 									<div class="mb-3">
-										<label for="create-contactPerson" class="form-label">Contact Person</label>
-										<input type="text" id="create-contactPerson" class="form-control" required>
+										<label class="form-label" for="create-contactPerson">Contact Person</label>
+										<input class="form-control" id="create-contactPerson" required type="text">
 									</div>
 								</div>
 								<div class="col">
 									<div class="mb-3">
-										<label for="create-projectManager" class="form-label">Project Manager</label>
-										<input type="text" id="create-projectManager" class="form-control" required>
+										<label class="form-label" for="create-projectManager">Project Manager</label>
+										<input class="form-control" id="create-projectManager" required type="text">
 									</div>
 								</div>
 								<div class="col">
 									<div class="mb-3">
-										<label for="create-contractor" class="form-label">Contractor</label>
-										<input type="text" id="create-contractor" class="form-control" required>
+										<label class="form-label" for="create-contractor">Contractor</label>
+										<input class="form-control" id="create-contractor" required type="text">
 									</div>
 								</div>
 							</div>
 							<div class="mb-3">
-								<label for="create-projectStatus" class="form-label">Project Status</label>
-								<select class="form-select" style="width: 100%;" id="create-projectStatus"
-										aria-label="Default select example" required>
-									<option selected value="null" disabled></option>
+								<label class="form-label" for="create-projectStatus">Project Status</label>
+								<select aria-label="Default select example" class="form-select" id="create-projectStatus"
+										required style="width: 100%;">
+									<option disabled selected value="null"></option>
 									<option value="unscheduled">Unscheduled</option>
 									<option value="scheduled">Scheduled</option>
 									<option value="current">Current</option>
@@ -561,21 +573,21 @@
 							<div class="row">
 								<div class="col">
 									<div class="mb-3">
-										<label for="create-startDate" class="form-label">Project Start Date</label>
-										<input type="date" id="create-startDate" class="form-control" required>
+										<label class="form-label" for="create-startDate">Project Start Date</label>
+										<input class="form-control" id="create-startDate" required type="date">
 									</div>
 								</div>
 								<div class="col">
 									<div class="mb-3">
-										<label for="create-endDate" class="form-label">Project Finish Date</label>
-										<input type="date" id="create-endDate" class="form-control">
+										<label class="form-label" for="create-endDate">Project Finish Date</label>
+										<input class="form-control" id="create-endDate" type="date">
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="d-grid gap-2">
-						<button type="submit" class="btn btn-primary">Create</button>
+						<button class="btn btn-primary" type="submit">Create</button>
 					</div>
 				</form>
 
@@ -583,48 +595,54 @@
 				<form ng-show="pages['editProject']" ng-submit="submitProject('viewProject', false)">
 					<div class="row">
 						<div class="mb-3">
-							<button type="button" class="btn btn-outline-primary float-start" ng-click="goBack()"><i
+							<button class="btn btn-outline-primary float-start" ng-click="goBack()" type="button"><i
 									class="bi bi-arrow-left"></i></button>
-							<button type="button" class="btn btn-danger float-end" ng-click="deleteProject(selectedProject)"><i class="bi bi-trash"></i></button>
+							<button class="btn btn-danger float-end" ng-click="deleteProject(selectedProject)"
+									type="button"><i class="bi bi-trash"></i></button>
 							<h2>Edit Project</h2>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md">
 							<div class="mb-3">
-								<label for="edit-projectID" class="form-label">Project ID</label>
-								<input type="text" id="edit-projectID" class="form-control"
-									   ng-model="selectedProject['ProjectID']" readonly>
+								<label class="form-label" for="edit-projectID">Project ID</label>
+								<input class="form-control" id="edit-projectID" ng-model="selectedProject['ProjectID']"
+									   readonly type="text">
 							</div>
 							<div class="mb-3">
-								<label for="edit-projectName" class="form-label">Project Name</label>
-								<input type="text" id="edit-projectName" class="form-control" ng-model="selectedProject['Name']" required>
+								<label class="form-label" for="edit-projectName">Project Name</label>
+								<input class="form-control" id="edit-projectName" ng-model="selectedProject['Name']"
+									   required type="text">
 							</div>
 							<div class="row">
 								<div class="col">
 									<div class="mb-3">
-										<label for="edit-contactPerson" class="form-label">Contact Person</label>
-										<input type="text" id="edit-contactPerson" class="form-control" ng-model="selectedProject['ContactPerson']" required>
+										<label class="form-label" for="edit-contactPerson">Contact Person</label>
+										<input class="form-control" id="edit-contactPerson" ng-model="selectedProject['ContactPerson']"
+											   required type="text">
 									</div>
 								</div>
 								<div class="col">
 									<div class="mb-3">
-										<label for="edit-projectManager" class="form-label">Project Manager</label>
-										<input type="text" id="edit-projectManager" class="form-control" ng-model="selectedProject['ProjectManager']" required>
+										<label class="form-label" for="edit-projectManager">Project Manager</label>
+										<input class="form-control" id="edit-projectManager" ng-model="selectedProject['ProjectManager']"
+											   required type="text">
 									</div>
 								</div>
 								<div class="col">
 									<div class="mb-3">
-										<label for="edit-contractor" class="form-label">Contractor</label>
-										<input type="text" id="edit-contractor" class="form-control" ng-model="selectedProject['Contractor']" required>
+										<label class="form-label" for="edit-contractor">Contractor</label>
+										<input class="form-control" id="edit-contractor" ng-model="selectedProject['Contractor']"
+											   required type="text">
 									</div>
 								</div>
 							</div>
 							<div class="mb-3">
-								<label for="edit-projectStatus" class="form-label">Project Status</label>
-								<select class="form-select" style="width: 100%;" id="edit-projectStatus"
-										aria-label="Default select example" ng-model="selectedProject['Status']" required>
-									<option ng-selected="true" value="null" disabled></option>
+								<label class="form-label" for="edit-projectStatus">Project Status</label>
+								<select aria-label="Default select example" class="form-select" id="edit-projectStatus"
+										ng-model="selectedProject['Status']" required
+										style="width: 100%;">
+									<option disabled ng-selected="true" value="null"></option>
 									<option value="unscheduled">Unscheduled</option>
 									<option value="scheduled">Scheduled</option>
 									<option value="current">Current</option>
@@ -634,20 +652,22 @@
 							<div class="row">
 								<div class="col">
 									<div class="mb-3">
-										<label for="edit-startDate" class="form-label">Project Start Date</label>
-										<input type="text" id="edit-startDate" ng-model="selectedProject['StartDate']" class="form-control" required>
+										<label class="form-label" for="edit-startDate">Project Start Date</label>
+										<input class="form-control" id="edit-startDate" ng-model="selectedProject['StartDate']"
+											   required type="text">
 									</div>
 								</div>
 								<div class="col">
 									<div class="mb-3">
-										<label for="edit-endDate" class="form-label">Project Finish Date</label>
-										<input type="text" id="edit-endDate" ng-model="selectedProject['EndDate']" class="form-control">
+										<label class="form-label" for="edit-endDate">Project Finish Date</label>
+										<input class="form-control" id="edit-endDate" ng-model="selectedProject['EndDate']"
+											   type="text">
 									</div>
 								</div>
 							</div>
 						</div>
 						<div class="d-grid gap-2">
-							<button type="submit" class="btn btn-primary">Save</button>
+							<button class="btn btn-primary" type="submit">Save</button>
 						</div>
 					</div>
 				</form>
@@ -656,22 +676,24 @@
 				<form ng-show="pages['createWork']" ng-submit="submitWork('viewProject', workTitle === 'Create')">
 					<div class="row">
 						<div class="mb-3">
-							<button type="button" class="btn btn-outline-primary float-start" ng-click="goBack()"><i
+							<button class="btn btn-outline-primary float-start" ng-click="goBack()" type="button"><i
 									class="bi bi-arrow-left"></i></button>
-							<button type="button" class="btn btn-danger float-end" ng-show="workTitle === 'Edit'" ng-click="deleteWork()"><i class="bi bi-trash"></i></button>
+							<button class="btn btn-danger float-end" ng-click="deleteWork()" ng-show="workTitle === 'Edit'"
+									type="button"><i class="bi bi-trash"></i></button>
 							<h2>{{workTitle + " " + "Work"}}</h2>
 						</div>
 					</div>
 					<div class="row">
 						<div class="mb-3">
-							<label for="workType" class="form-label">Work Description</label>
-							<textarea id="workType" class="form-control" rows="2" ng-model="selectedWork['TypeOfWork']" required></textarea>
+							<label class="form-label" for="workType">Work Description</label>
+							<textarea class="form-control" id="workType" ng-model="selectedWork['TypeOfWork']" required
+									  rows="2"></textarea>
 						</div>
 						<div class="mb-3">
-							<label for="status" class="form-label">Status</label>
-							<select class="form-select" id="status" style="width: 100%;"
-									aria-label="Default select example" ng-model="selectedWork['Status']" required>
-								<option ng-selected='true' value="null" disabled></option>
+							<label class="form-label" for="status">Status</label>
+							<select aria-label="Default select example" class="form-select" id="status"
+									ng-model="selectedWork['Status']" required style="width: 100%;">
+								<option disabled ng-selected='true' value="null"></option>
 								<option value="done">Done</option>
 								<option value="on-going">On-going</option>
 								<option value="scheduled">Scheduled</option>
@@ -679,28 +701,31 @@
 							</select>
 						</div>
 						<div class="d-grid gap-2">
-							<button type="submit" class="btn btn-primary">{{workTitle}}</button>
+							<button class="btn btn-primary" type="submit">{{workTitle}}</button>
 						</div>
 					</div>
 				</form>
 
 				<!-- Create/Edit Comment -->
-				<form ng-show="pages['createComment']" ng-submit="submitComment('viewProject', commentTitle === 'Create')">
+				<form ng-show="pages['createComment']"
+					  ng-submit="submitComment('viewProject', commentTitle === 'Create')">
 					<div class="row">
 						<div class="mb-3">
-							<button type="button" class="btn btn-outline-primary float-start" ng-click="goBack()"><i
+							<button class="btn btn-outline-primary float-start" ng-click="goBack()" type="button"><i
 									class="bi bi-arrow-left"></i></button>
-							<button type="button" class="btn btn-danger float-end" ng-show="commentTitle === 'Edit'" ng-click="deleteComment()"><i class="bi bi-trash"></i></button>
+							<button class="btn btn-danger float-end" ng-click="deleteComment()" ng-show="commentTitle === 'Edit'"
+									type="button"><i class="bi bi-trash"></i></button>
 							<h2>{{commentTitle + " " + "Comment"}}</h2>
 						</div>
 					</div>
 					<div class="row">
 						<div class="mb-3">
-							<label for="comment" class="form-label">Comment</label>
-							<textarea class="form-control" ng-model="selectedComment['Text']" id="comment" rows="3"></textarea>
+							<label class="form-label" for="comment">Comment</label>
+							<textarea class="form-control" id="comment" ng-model="selectedComment['Text']"
+									  rows="3"></textarea>
 						</div>
 						<div class="d-grid gap-2">
-							<button type="submit" class="btn btn-primary">{{commentTitle}}</button>
+							<button class="btn btn-primary" type="submit">{{commentTitle}}</button>
 						</div>
 					</div>
 				</form>
