@@ -46,8 +46,6 @@
 								   ng-click="useNavBar('buildingDirectory')">Home</a>
 								<a class="nav-link" id="myAccount"
 								   ng-click="useNavBar('myAccount')">My Account</a>
-								<a class="nav-link" id="createAccount" ng-click="useNavBar('createAccount')">Create
-									Account</a>
 							</div>
 						</div>
 					</nav>
@@ -164,51 +162,6 @@
 					</div>
 					<div class="d-grid gap-2">
 						<button type="submit" ng-click="logout('')" class="btn btn-primary">Sign Out</button>
-					</div>
-				</form>
-
-				<!-- Create/Edit Account -->
-				<form ng-show="pages['createAccount']" ng-submit="submit(this.form, 'viewAccount')">
-					<div class="row">
-						<div class="mb-3">
-							<button type="button" class="btn btn-outline-primary float-start" ng-click="goBack()"><i
-									class="bi bi-arrow-left"></i></button>
-							<button type="reset" class="btn btn-danger float-end"><i class="bi bi-trash"></i></button>
-							<h2>Create/Edit Account</h2>
-						</div>
-					</div>
-					<div class="mb-3">
-						<label for="accountType" class="form-label">Account Type</label>
-						<select class="form-select" id="accountType" style="width: 100%;"
-								aria-label="Default select example" required>
-							<option selected disabled></option>
-							<option value="manager">Manager</option>
-							<option value="owner">Owner</option>
-							<option value="contractor">Contractor</option>
-						</select>
-					</div>
-					<div class="mb-3">
-						<label for="firstname" class="form-label">First Name</label>
-						<input type="text" id="firstname" class="form-control" required>
-					</div>
-					<div class="mb-3">
-						<label for="lastname" class="form-label">Last Name</label>
-						<input type="text" id="lastname" class="form-control" required>
-					</div>
-					<div class="mb-3">
-						<label for="signup-email" class="form-label">Email</label>
-						<input type="email" id="signup-email" class="form-control" required>
-					</div>
-					<div class="mb-3">
-						<label for="signup-password" class="form-label">Password</label>
-						<input type="password" id="signup-password" class="form-control" required>
-					</div>
-					<div class="mb-3">
-						<label for="signup-passwordConfirm" class="form-label">Re-confirm Password</label>
-						<input type="password" id="signup-passwordConfirm" class="form-control" required>
-					</div>
-					<div class="d-grid gap-2">
-						<button type="submit" class="btn btn-primary">Create</button>
 					</div>
 				</form>
 
@@ -495,7 +448,7 @@
 										<th scope="col">Work</th>
 										<th scope="col">Status</th>
 										<th scope="col">
-											<button type="button" ng-click="modifyWork(true)"
+											<button type="button" ng-click="modifyWork()"
 													class="btn btn-primary"><i class="bi bi-plus-lg"></i>
 											</button>
 										</th>
@@ -506,7 +459,7 @@
 										<td>{{work['TypeOfWork']}}</td>
 										<td>{{work['Status']}}</td>
 										<td>
-											<button type="button" ng-click="modifyWork(false, work)"
+											<button type="button" ng-click="modifyWork(work)"
 													class="btn btn-primary"><i
 													class="bi bi-pencil-square"></i>
 											</button>
@@ -526,7 +479,7 @@
 										<th scope="col">Comment</th>
 										<th scope="col">Author</th>
 										<th scope="col">
-											<button type="button" ng-click="changePage('createComment')"
+											<button type="button" ng-click="modifyComment()"
 													class="btn btn-primary"><i class="bi bi-plus-lg"></i>
 											</button>
 										</th>
@@ -537,11 +490,11 @@
 										<td>{{comment['Text']}}</td>
 										<td><a href ng-click="changePage('viewAccount')">{{comment['Author']}}</a></td>
 										<td>
-											<button type="button" ng-click="changePage('createComment')"
+											<button type="button" ng-click="modifyComment(comment)"
 													class="btn btn-primary">
 												<i class="bi bi-pencil-square"></i>
 											</button>
-											<button type="reset" class="btn btn-danger"><i class="bi bi-trash"></i>
+											<button type="button" ng-click="deleteComment(comment)" class="btn btn-danger"><i class="bi bi-trash"></i>
 											</button>
 										</td>
 									</tr>
@@ -705,7 +658,7 @@
 						<div class="mb-3">
 							<button type="button" class="btn btn-outline-primary float-start" ng-click="goBack()"><i
 									class="bi bi-arrow-left"></i></button>
-							<button type="button" class="btn btn-danger float-end" ng-click="deleteWork()"><i class="bi bi-trash"></i></button>
+							<button type="button" class="btn btn-danger float-end" ng-show="workTitle === 'Edit'" ng-click="deleteWork()"><i class="bi bi-trash"></i></button>
 							<h2>{{workTitle + " " + "Work"}}</h2>
 						</div>
 					</div>
@@ -732,22 +685,22 @@
 				</form>
 
 				<!-- Create/Edit Comment -->
-				<form ng-show="pages['createComment']" ng-submit="submit(this.form, 'viewProject')">
+				<form ng-show="pages['createComment']" ng-submit="submitComment('viewProject', commentTitle === 'Create')">
 					<div class="row">
 						<div class="mb-3">
 							<button type="button" class="btn btn-outline-primary float-start" ng-click="goBack()"><i
 									class="bi bi-arrow-left"></i></button>
-							<button type="reset" class="btn btn-danger float-end"><i class="bi bi-trash"></i></button>
-							<h2>Create/Edit Comment</h2>
+							<button type="button" class="btn btn-danger float-end" ng-show="commentTitle === 'Edit'" ng-click="deleteComment()"><i class="bi bi-trash"></i></button>
+							<h2>{{commentTitle + " " + "Comment"}}</h2>
 						</div>
 					</div>
 					<div class="row">
 						<div class="mb-3">
 							<label for="comment" class="form-label">Comment</label>
-							<textarea class="form-control" id="comment" rows="3"></textarea>
+							<textarea class="form-control" ng-model="selectedComment['Text']" id="comment" rows="3"></textarea>
 						</div>
 						<div class="d-grid gap-2">
-							<button type="submit" class="btn btn-primary">Create</button>
+							<button type="submit" class="btn btn-primary">{{commentTitle}}</button>
 						</div>
 					</div>
 				</form>
