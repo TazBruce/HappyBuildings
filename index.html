@@ -159,7 +159,8 @@
 					</div>
 					<div class="mb-3">
 						<label for="viewLoginName" class="form-label">Username</label>
-						<input type="text" id="viewLoginName" class="form-control" ng-model="loggedUser['LoginName']" readonly>
+						<input type="text" id="viewLoginName" class="form-control" ng-model="loggedUser['LoginName']"
+							   readonly>
 					</div>
 					<div class="d-grid gap-2">
 						<button type="submit" ng-click="logout('')" class="btn btn-primary">Sign Out</button>
@@ -215,14 +216,15 @@
 				<div ng-show="pages['buildingDirectory']">
 					<div class="row">
 						<div class="mb-3">
-							<button type="button" ng-show="loggedUser['UserType'] === 'manager'" ng-click="modifyBuilding(true)"
+							<button type="button" ng-show="loggedUser['UserType'] === 'manager'"
+									ng-click="modifyBuilding(true)"
 									class="btn btn-primary float-end"><i class="bi bi-plus-lg"></i>
 							</button>
 							<h2>Building Directory</h2>
 						</div>
 					</div>
 					<div class="row">
-						<div class="mb-3 overflow-auto" style="max-height: 260px">
+						<div class="mb-3 overflow-auto" style="max-height: 500px">
 							<table class="table table-striped table-hover" id="buildings">
 								<thead class="table-dark">
 								<tr>
@@ -233,9 +235,9 @@
 								</thead>
 								<tbody>
 								<tr ng-repeat="building in buildings | orderBy:toNumber:false">
-									<td><a href ng-click="changePage('viewBuilding', building.ID)">{{building.ID}}</a></td>
+									<td><a href ng-click="viewBuilding(building)">{{building.ID}}</a></td>
 									<td><a href ng-click="changePage('viewAccount')">{{building.Owner}}</a></td>
-									<td><a href ng-click="changePage('viewBuilding', building.ID)">{{building.Address}}</a></td>
+									<td><a href ng-click="viewBuilding(building)">{{building.Address}}</a></td>
 								</tr>
 								</tbody>
 							</table>
@@ -249,7 +251,8 @@
 						<div class="mb-3">
 							<button type="button" class="btn btn-outline-primary float-start" ng-click="goBack()"><i
 									class="bi bi-arrow-left"></i></button>
-							<button type="button" class="btn btn-primary float-end" ng-show="loggedUser['UserType'] === 'manager'"
+							<button type="button" class="btn btn-primary float-end"
+									ng-show="loggedUser['UserType'] === 'manager'"
 									ng-click="modifyBuilding(false)">
 								<i class="bi bi-pencil-square"></i>
 							</button>
@@ -260,16 +263,19 @@
 						<div class="col-md-6">
 							<div class="mb-3">
 								<label for="buildingID" class="form-label">ID</label>
-								<input type="text" id="buildingID" class="form-control" ng-model="selectedBuilding['ID']" readonly>
+								<input type="text" id="buildingID" class="form-control"
+									   ng-model="selectedBuilding['ID']" readonly>
 							</div>
 							<div class="mb-3">
 								<label for="buildingOwner" class="form-label">Owner</label>
-								<input type="text" id="buildingOwner" class="form-control" ng-model="selectedBuilding['Owner']" readonly>
+								<input type="text" id="buildingOwner" class="form-control"
+									   ng-model="selectedBuilding['Owner']" readonly>
 							</div>
 							<div class="mb-3">
 								<label for="type" class="form-label">Building Type</label>
 								<select class="form-select" id="type" style="width: 100%;"
-										aria-label="Default select example" ng-model="selectedBuilding['BuildingType']" disabled>
+										aria-label="Default select example" ng-model="selectedBuilding['BuildingType']"
+										disabled>
 									<option ng-selected="true" value=null disabled></option>
 									<option value="Residential">Residential</option>
 									<option value="Commercial">Commercial</option>
@@ -279,7 +285,8 @@
 							</div>
 							<div class="mb-3">
 								<label for="constructionDate" class="form-label">Date of Construction</label>
-								<input type="text" id="constructionDate" class="form-control" ng-model="selectedBuilding['ConstructionDate']" readonly>
+								<input type="text" id="constructionDate" class="form-control"
+									   ng-model="selectedBuilding['ConstructionDate']" readonly>
 							</div>
 						</div>
 						<div class="col-md-6">
@@ -293,7 +300,7 @@
 									</thead>
 									<tbody>
 									<tr ng-repeat="project in projects[selectedBuilding['ID']]">
-										<td><a href ng-click="changePage('viewProject')">{{project.Name}}</a></td>
+										<td><a href ng-click="viewProject(project)">{{project.Name}}</a></td>
 										<td>{{project.Status}}</td>
 									</tr>
 									</tbody>
@@ -303,28 +310,74 @@
 					</div>
 				</div>
 
-				<!-- Create/Edit Building -->
-				<form ng-show="pages['createBuilding']" ng-submit="submitBuilding('viewBuilding')">
+				<!-- Create Building -->
+				<form ng-show="pages['createBuilding']" ng-submit="submitBuilding('editBuilding', true)">
 					<div class="row">
 						<div class="mb-3">
 							<button type="button" class="btn btn-outline-primary float-start" ng-click="goBack()"><i
 									class="bi bi-arrow-left"></i></button>
-							<h2>{{buildingTitle}}</h2>
+							<h2>Create Building</h2>
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-md-5">
+						<div class="col-md">
+							<div class="mb-3">
+								<label for="create-buildingID" class="form-label">ID</label>
+								<input type="number" id="create-buildingID" class="form-control" ng-model="buildingID" readonly>
+							</div>
+							<div class="mb-3">
+								<label for="create-owner" class="form-label">Owner</label>
+								<input type="text" id="create-owner" class="form-control" required>
+							</div>
+							<div class="mb-3">
+								<label for="create-address" class="form-label">Building Address</label>
+								<input type="text" id="create-address" class="form-control" required>
+							</div>
+							<div class="mb-3">
+								<label for="create-buildingType" class="form-label">Building Type</label>
+								<select class="form-select" id="create-buildingType" style="width: 100%;"
+										aria-label="Default select example" required>
+									<option selected value=null disabled></option>
+									<option value="Residential">Residential</option>
+									<option value="Commercial">Commercial</option>
+									<option value="Industrial">Industrial</option>
+									<option value="Institutional">Institutional</option>
+								</select>
+							</div>
+							<div class="mb-3">
+								<label for="create-date" class="form-label">Date of Construction</label>
+								<input type="datetime-local" id="create-date" class="form-control" required>
+							</div>
+						</div>
+					</div>
+					<div class="d-grid gap-2">
+						<div id="createBuildingFeedback" style="color: red;" class="form-text"></div>
+						<button type="submit" class="btn btn-primary">Create</button>
+					</div>
+				</form>
+
+				<!-- Edit Building -->
+				<form ng-show="pages['editBuilding']" ng-submit="submitBuilding('viewBuilding', false)">
+					<div class="row">
+						<div class="mb-3">
+							<button type="button" class="btn btn-outline-primary float-start" ng-click="goBack()"><i
+									class="bi bi-arrow-left"></i></button>
+							<h2>Edit Building</h2>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
 							<div class="mb-3">
 								<label for="ID" class="form-label">ID</label>
 								<input type="number" id="ID" class="form-control" ng-model="buildingID" readonly>
 							</div>
 							<div class="mb-3">
 								<label for="owner" class="form-label">Owner</label>
-								<input type="text" id="owner" class="form-control" required>
+								<input type="text" id="owner" class="form-control" ng-model="selectedBuilding['Owner']" required>
 							</div>
 							<div class="mb-3">
 								<label for="address" class="form-label">Building Address</label>
-								<input type="text" id="address" class="form-control" required>
+								<input type="text" id="address" class="form-control" ng-model="selectedBuilding['Address']" required>
 							</div>
 							<div class="mb-3">
 								<label for="buildingType" class="form-label">Building Type</label>
@@ -339,31 +392,43 @@
 							</div>
 							<div class="mb-3">
 								<label for="date" class="form-label">Date of Construction</label>
-								<input type="datetime-local" id="date" class="form-control" required>
+								<input type="text" id="date" class="form-control" ng-model="selectedBuilding['ConstructionDate']" required>
 							</div>
 						</div>
-						<div class="col-md-7">
+						<div class="col-md-6">
 							<div class="mb-3">
-								<table class="table float-end">
+								<table class="table table-striped table-hover">
 									<thead>
 									<tr>
 										<th scope="col">Project</th>
 										<th scope="col">Status</th>
 										<th scope="col">
-											<button type="button" ng-click="changePage('createProject')"
+											<button type="button" ng-click="modifyProject(true)"
 													class="btn btn-primary"><i class="bi bi-plus-lg"></i>
 											</button>
 										</th>
 									</tr>
 									</thead>
 									<tbody>
+									<tr ng-repeat="project in projects[selectedBuilding['ID']]">
+										<td><a href ng-click="viewProject(project, false)">{{project.Name}}</a></td>
+										<td>{{project.Status}}</td>
+										<td>
+											<button type="button" ng-click="viewProject(project, true)"
+													class="btn btn-primary"><i
+													class="bi bi-pencil-square"></i>
+											</button>
+											<button type="button" ng-click="deleteProject(project)" class="btn btn-danger"><i class="bi bi-trash"></i>
+											</button>
+										</td>
+									</tr>
 									</tbody>
 								</table>
 							</div>
 						</div>
 						<div class="d-grid gap-2">
 							<div id="buildingFeedback" style="color: red;" class="form-text"></div>
-							<button type="submit" class="btn btn-primary">Create</button>
+							<button type="submit" class="btn btn-primary">Save</button>
 						</div>
 					</div>
 				</form>
@@ -374,20 +439,27 @@
 						<div class="mb-3">
 							<button type="button" class="btn btn-outline-primary float-start" ng-click="goBack()"><i
 									class="bi bi-arrow-left"></i></button>
-							<button type="button" ng-show="loggedUser['UserType'] === 'manager'" ng-click="changePage('createProject')"
+							<button type="button" ng-show="loggedUser['UserType'] === 'manager'"
+									ng-click="modifyProject(false)"
 									class="btn btn-primary float-end">
 								<i class="bi bi-pencil-square"></i>
 							</button>
-							<h2>Project Name</h2>
+							<h2>{{selectedProject['Name']}}</h2>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-6">
 							<div class="mb-3">
-								<label for="buildingType" class="form-label">Project Status</label>
-								<select class="form-select" style="width: 100%;" id="readProjectStatus" aria-label="Default select example"
+								<label for="projectID" class="form-label">ID</label>
+								<input type="text" id="projectID" class="form-control"
+									   ng-model="selectedProject['ProjectID']" readonly>
+							</div>
+							<div class="mb-3">
+								<label for="readProjectStatus" class="form-label">Project Status</label>
+								<select class="form-select" style="width: 100%;" id="readProjectStatus"
+										aria-label="Default select example" ng-model="selectedProject['Status']"
 										disabled>
-									<option selected disabled></option>
+									<option ng-selected="true" value="null" disabled></option>
 									<option value="unscheduled">Unscheduled</option>
 									<option value="scheduled">Scheduled</option>
 									<option value="current">Current</option>
@@ -396,21 +468,23 @@
 							</div>
 							<div class="mb-3">
 								<label for="readStartDate" class="form-label">Project Start Date</label>
-								<input type="date" id="readStartDate" class="form-control" readonly>
+								<input type="text" id="readStartDate" class="form-control" ng-model="selectedProject['StartDate']" readonly>
 							</div>
 							<div class="mb-3">
 								<label for="readFinishDate" class="form-label">Project Finish Date</label>
-								<input type="date" id="readFinishDate" class="form-control" readonly>
+								<input type="text" id="readFinishDate" class="form-control" ng-model="selectedProject['EndDate']" readonly>
 							</div>
 							<div class="mb-3">
-								<label for="owner" class="form-label">Contractors(s)</label>
-								<select class="form-select" style="width: 100%;" id="readContractors" aria-label="Default select example"
-										disabled>
-									<option selected disabled></option>
-									<option data-tokens="bobS">Bob Smith</option>
-									<option data-tokens="rickyH">Ricky Henare</option>
-									<option data-tokens="trishB">Trish Brown</option>
-								</select>
+								<label for="contactPerson" class="form-label">Contact Person</label>
+								<input type="text" id="contactPerson" class="form-control" ng-model="selectedProject['ContactPerson']" readonly>
+							</div>
+							<div class="mb-3">
+								<label for="projectManager" class="form-label">Project Manager</label>
+								<input type="text" id="projectManager" class="form-control" ng-model="selectedProject['ProjectManager']" readonly>
+							</div>
+							<div class="mb-3">
+								<label for="contractor" class="form-label">Contractor</label>
+								<input type="text" id="contractor" class="form-control" ng-model="selectedProject['Contractor']" readonly>
 							</div>
 						</div>
 						<div class="col-md-6">
@@ -418,42 +492,27 @@
 								<table class="table table-striped table-hover">
 									<thead>
 									<tr>
-										<th scope="col">Task</th>
+										<th scope="col">Work</th>
 										<th scope="col">Status</th>
+										<th scope="col">
+											<button type="button" ng-click="modifyWork(true)"
+													class="btn btn-primary"><i class="bi bi-plus-lg"></i>
+											</button>
+										</th>
 									</tr>
 									</thead>
 									<tbody>
-									<tr>
-										<td>Scaffolding</td>
-										<td>Done</td>
-									</tr>
-									<tr>
-										<td>Electricity</td>
-										<td>On-going</td>
-									</tr>
-									<tr>
-										<td>Plumbing</td>
-										<td>Scheduled</td>
-									</tr>
-									<tr>
-										<td>Gas</td>
-										<td>Done</td>
-									</tr>
-									<tr>
-										<td>Tiling</td>
-										<td>Cancelled</td>
-									</tr>
-									<tr>
-										<td>Tiling</td>
-										<td>Cancelled</td>
-									</tr>
-									<tr>
-										<td>Tiling</td>
-										<td>Cancelled</td>
-									</tr>
-									<tr>
-										<td>Tiling</td>
-										<td>Cancelled</td>
+									<tr ng-repeat="work in selectedProject['Works']">
+										<td>{{work['TypeOfWork']}}</td>
+										<td>{{work['Status']}}</td>
+										<td>
+											<button type="button" ng-click="modifyWork(false, work)"
+													class="btn btn-primary"><i
+													class="bi bi-pencil-square"></i>
+											</button>
+											<button type="button" ng-click="deleteWork(work)" class="btn btn-danger"><i class="bi bi-trash"></i>
+											</button>
+										</td>
 									</tr>
 									</tbody>
 								</table>
@@ -474,71 +533,9 @@
 									</tr>
 									</thead>
 									<tbody>
-									<tr>
-										<td>Missing Compliance Sheet</td>
-										<td><a href ng-click="changePage('viewAccount')">Ryan Hayes</a></td>
-										<td>
-											<button type="button" ng-click="changePage('createComment')"
-													class="btn btn-primary">
-												<i class="bi bi-pencil-square"></i>
-											</button>
-											<button type="reset" class="btn btn-danger"><i class="bi bi-trash"></i>
-											</button>
-										</td>
-									</tr>
-									<tr>
-										<td>Missing Compliance Sheet</td>
-										<td><a href ng-click="changePage('viewAccount')">Ryan Hayes</a></td>
-										<td>
-											<button type="button" ng-click="changePage('createComment')"
-													class="btn btn-primary">
-												<i class="bi bi-pencil-square"></i>
-											</button>
-											<button type="reset" class="btn btn-danger"><i class="bi bi-trash"></i>
-											</button>
-										</td>
-									</tr>
-									<tr>
-										<td>Missing Compliance Sheet</td>
-										<td><a href ng-click="changePage('viewAccount')">Ryan Hayes</a></td>
-										<td>
-											<button type="button" ng-click="changePage('createComment')"
-													class="btn btn-primary">
-												<i class="bi bi-pencil-square"></i>
-											</button>
-											<button type="reset" class="btn btn-danger"><i class="bi bi-trash"></i>
-											</button>
-										</td>
-									</tr>
-									<tr>
-										<td>Missing Compliance Sheet</td>
-										<td><a href ng-click="changePage('viewAccount')">Ryan Hayes</a></td>
-										<td>
-											<button type="button" ng-click="changePage('createComment')"
-													class="btn btn-primary">
-												<i class="bi bi-pencil-square"></i>
-											</button>
-											<button type="reset" class="btn btn-danger"><i class="bi bi-trash"></i>
-											</button>
-										</td>
-									</tr>
-									<tr>
-										<td>Missing Compliance Sheet</td>
-										<td>
-											<a href ng-click="changePage('viewAccount')">Ryan Hayes</a>
-										</td>
-										<td>
-											<button type="button" ng-click="changePage('createComment')"
-													class="btn btn-primary">
-												<i class="bi bi-pencil-square"></i>
-											</button>
-											<button type="reset" class="btn btn-danger"><i class="bi bi-trash"></i>
-											</button>
-										</td>
-									</tr>
-									<tr>
-										<td>Missing Compliance Sheet</td>
-										<td><a href ng-click="changePage('viewAccount')">Ryan Hayes</a></td>
+									<tr ng-repeat="comment in selectedProject['Comments']">
+										<td>{{comment['Text']}}</td>
+										<td><a href ng-click="changePage('viewAccount')">{{comment['Author']}}</a></td>
 										<td>
 											<button type="button" ng-click="changePage('createComment')"
 													class="btn btn-primary">
@@ -557,105 +554,179 @@
 					</div>
 				</div>
 
-				<!-- Create/Edit Project -->
-				<form ng-show="pages['createProject']" ng-submit="submit(this.form, 'viewProject')">
+				<!-- Create Project -->
+				<form ng-show="pages['createProject']" ng-submit="submitProject('viewProject', true)">
 					<div class="row">
 						<div class="mb-3">
 							<button type="button" class="btn btn-outline-primary float-start" ng-click="goBack()"><i
 									class="bi bi-arrow-left"></i></button>
-							<button type="reset" class="btn btn-danger float-end"><i class="bi bi-trash"></i></button>
-							<h2>Create/Edit Project</h2>
+							<h2>Create Project</h2>
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-md-5">
+						<div class="col-md">
 							<div class="mb-3">
-								<label for="projectName" class="form-label">Project Name</label>
-								<input type="text" id="projectName" class="form-control" required>
+								<label for="create-projectID" class="form-label">Project ID</label>
+								<input type="text" id="create-projectID" class="form-control"
+									   ng-model="projectID" readonly>
 							</div>
 							<div class="mb-3">
-								<label for="buildingType" class="form-label">Project Status</label>
-								<select class="form-select" style="width: 100%;" id="projectStatus"
-										aria-label="Default select example"
-										required>
-									<option selected disabled></option>
+								<label for="create-projectName" class="form-label">Project Name</label>
+								<input type="text" id="create-projectName" class="form-control" required>
+							</div>
+							<div class="row">
+								<div class="col">
+									<div class="mb-3">
+										<label for="create-contactPerson" class="form-label">Contact Person</label>
+										<input type="text" id="create-contactPerson" class="form-control" required>
+									</div>
+								</div>
+								<div class="col">
+									<div class="mb-3">
+										<label for="create-projectManager" class="form-label">Project Manager</label>
+										<input type="text" id="create-projectManager" class="form-control" required>
+									</div>
+								</div>
+								<div class="col">
+									<div class="mb-3">
+										<label for="create-contractor" class="form-label">Contractor</label>
+										<input type="text" id="create-contractor" class="form-control" required>
+									</div>
+								</div>
+							</div>
+							<div class="mb-3">
+								<label for="create-projectStatus" class="form-label">Project Status</label>
+								<select class="form-select" style="width: 100%;" id="create-projectStatus"
+										aria-label="Default select example" required>
+									<option selected value="null" disabled></option>
 									<option value="unscheduled">Unscheduled</option>
 									<option value="scheduled">Scheduled</option>
 									<option value="current">Current</option>
 									<option value="closed">Closed</option>
 								</select>
 							</div>
-							<div class="mb-3">
-								<label for="startDate" class="form-label">Project Start Date</label>
-								<input type="date" id="startDate" class="form-control" required>
-							</div>
-							<div class="mb-3">
-								<label for="finishDate" class="form-label">Project Finish Date</label>
-								<input type="date" id="finishDate" class="form-control">
-							</div>
-							<div class="mb-3">
-								<label for="contractors" class="form-label">Contractors(s)</label>
-								<select class="select2-search" style="width: 100%;" id="contractors"
-										aria-label="Default select example" multiple="multiple" required>
-									<option value="Bob Smith" selected>Bob Smith</option>
-									<option value="Ricky Henare">Ricky Henare</option>
-									<option value="Trish Brown">Trish Brown</option>
-								</select>
+							<div class="row">
+								<div class="col">
+									<div class="mb-3">
+										<label for="create-startDate" class="form-label">Project Start Date</label>
+										<input type="date" id="create-startDate" class="form-control" required>
+									</div>
+								</div>
+								<div class="col">
+									<div class="mb-3">
+										<label for="create-endDate" class="form-label">Project Finish Date</label>
+										<input type="date" id="create-endDate" class="form-control">
+									</div>
+								</div>
 							</div>
 						</div>
-						<div class="col-md-7">
-							<div class="col">
-								<table class="table">
-									<thead>
-									<tr>
-										<th scope="col">Tasks</th>
-										<th scope="col">Status</th>
-										<th scope="col">
-											<button type="button" ng-click="changePage('createTask')"
-													class="btn btn-primary"><i class="bi bi-plus-lg"></i>
-											</button>
-										</th>
-									</tr>
-									</thead>
-									<tbody>
-									</tbody>
-								</table>
+					</div>
+					<div class="d-grid gap-2">
+						<button type="submit" class="btn btn-primary">Create</button>
+					</div>
+				</form>
+
+				<!-- Edit Project -->
+				<form ng-show="pages['editProject']" ng-submit="submitProject('viewProject', false)">
+					<div class="row">
+						<div class="mb-3">
+							<button type="button" class="btn btn-outline-primary float-start" ng-click="goBack()"><i
+									class="bi bi-arrow-left"></i></button>
+							<button type="button" class="btn btn-danger float-end" ng-click="deleteProject(selectedProject)"><i class="bi bi-trash"></i></button>
+							<h2>Edit Project</h2>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md">
+							<div class="mb-3">
+								<label for="edit-projectID" class="form-label">Project ID</label>
+								<input type="text" id="edit-projectID" class="form-control"
+									   ng-model="selectedProject['ProjectID']" readonly>
+							</div>
+							<div class="mb-3">
+								<label for="edit-projectName" class="form-label">Project Name</label>
+								<input type="text" id="edit-projectName" class="form-control" ng-model="selectedProject['Name']" required>
+							</div>
+							<div class="row">
+								<div class="col">
+									<div class="mb-3">
+										<label for="edit-contactPerson" class="form-label">Contact Person</label>
+										<input type="text" id="edit-contactPerson" class="form-control" ng-model="selectedProject['ContactPerson']" required>
+									</div>
+								</div>
+								<div class="col">
+									<div class="mb-3">
+										<label for="edit-projectManager" class="form-label">Project Manager</label>
+										<input type="text" id="edit-projectManager" class="form-control" ng-model="selectedProject['ProjectManager']" required>
+									</div>
+								</div>
+								<div class="col">
+									<div class="mb-3">
+										<label for="edit-contractor" class="form-label">Contractor</label>
+										<input type="text" id="edit-contractor" class="form-control" ng-model="selectedProject['Contractor']" required>
+									</div>
+								</div>
+							</div>
+							<div class="mb-3">
+								<label for="edit-projectStatus" class="form-label">Project Status</label>
+								<select class="form-select" style="width: 100%;" id="edit-projectStatus"
+										aria-label="Default select example" ng-model="selectedProject['Status']" required>
+									<option ng-selected="true" value="null" disabled></option>
+									<option value="unscheduled">Unscheduled</option>
+									<option value="scheduled">Scheduled</option>
+									<option value="current">Current</option>
+									<option value="closed">Closed</option>
+								</select>
+							</div>
+							<div class="row">
+								<div class="col">
+									<div class="mb-3">
+										<label for="edit-startDate" class="form-label">Project Start Date</label>
+										<input type="text" id="edit-startDate" ng-model="selectedProject['StartDate']" class="form-control" required>
+									</div>
+								</div>
+								<div class="col">
+									<div class="mb-3">
+										<label for="edit-endDate" class="form-label">Project Finish Date</label>
+										<input type="text" id="edit-endDate" ng-model="selectedProject['EndDate']" class="form-control">
+									</div>
+								</div>
 							</div>
 						</div>
 						<div class="d-grid gap-2">
-							<button type="submit" class="btn btn-primary">Create</button>
+							<button type="submit" class="btn btn-primary">Save</button>
 						</div>
 					</div>
 				</form>
 
 				<!-- Create/Edit Task -->
-				<form ng-show="pages['createTask']" ng-submit="submit(this.form, 'createProject')">
+				<form ng-show="pages['createWork']" ng-submit="submitWork('viewProject', workTitle === 'Create')">
 					<div class="row">
 						<div class="mb-3">
 							<button type="button" class="btn btn-outline-primary float-start" ng-click="goBack()"><i
 									class="bi bi-arrow-left"></i></button>
-							<button type="reset" class="btn btn-danger float-end"><i class="bi bi-trash"></i></button>
-							<h2>Create/Edit Task</h2>
+							<button type="button" class="btn btn-danger float-end" ng-click="deleteWork()"><i class="bi bi-trash"></i></button>
+							<h2>{{workTitle + " " + "Work"}}</h2>
 						</div>
 					</div>
 					<div class="row">
 						<div class="mb-3">
-							<label for="worktype" class="form-label">Task Description</label>
-							<textarea id="worktype" class="form-control" rows="2" required></textarea>
+							<label for="workType" class="form-label">Work Description</label>
+							<textarea id="workType" class="form-control" rows="2" ng-model="selectedWork['TypeOfWork']" required></textarea>
 						</div>
 						<div class="mb-3">
 							<label for="status" class="form-label">Status</label>
 							<select class="form-select" id="status" style="width: 100%;"
-									aria-label="Default select example" required>
-								<option selected disabled></option>
+									aria-label="Default select example" ng-model="selectedWork['Status']" required>
+								<option ng-selected='true' value="null" disabled></option>
 								<option value="done">Done</option>
 								<option value="on-going">On-going</option>
-								<option value="shceduled">Scheduled</option>
+								<option value="scheduled">Scheduled</option>
 								<option value="cancelled">Cancelled</option>
 							</select>
 						</div>
 						<div class="d-grid gap-2">
-							<button type="submit" class="btn btn-primary">Create</button>
+							<button type="submit" class="btn btn-primary">{{workTitle}}</button>
 						</div>
 					</div>
 				</form>
