@@ -572,13 +572,13 @@
 								<div class="col">
 									<div class="mb-3">
 										<label class="form-label" for="create-startDate">Project Start Date</label>
-										<input class="form-control" id="create-startDate" required type="date">
+										<input class="form-control" id="create-startDate" type="datetime-local">
 									</div>
 								</div>
 								<div class="col">
 									<div class="mb-3">
 										<label class="form-label" for="create-endDate">Project Finish Date</label>
-										<input class="form-control" id="create-endDate" type="date">
+										<input class="form-control" id="create-endDate" type="datetime-local">
 									</div>
 								</div>
 							</div>
@@ -651,8 +651,7 @@
 								<div class="col">
 									<div class="mb-3">
 										<label class="form-label" for="edit-startDate">Project Start Date</label>
-										<input class="form-control" id="edit-startDate" ng-model="selectedProject['StartDate']"
-											   required type="text">
+										<input class="form-control" id="edit-startDate" ng-model="selectedProject['StartDate']" type="text">
 									</div>
 								</div>
 								<div class="col">
