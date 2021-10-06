@@ -263,9 +263,9 @@
 									</tr>
 									</thead>
 									<tbody>
-									<tr ng-if="(loggedUser['UserType'] === 'manager' || loggedUser['UserType'] === 'owner')
-										|| loggedUser['LoginName'] === project['Contractor']"
-										ng-repeat="project in projects[selectedBuilding['ID']]">
+									<tr ng-repeat="project in projects[selectedBuilding['ID']]"
+										ng-if="(loggedUser['UserType'] === 'manager' || loggedUser['UserType'] === 'owner')
+										|| loggedUser['LoginName'] === project['Contractor']">
 										<td><a href ng-click="viewProject(project, false)">{{project.Name}}</a></td>
 										<td>{{project.Status}}</td>
 										<td>
