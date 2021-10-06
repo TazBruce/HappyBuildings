@@ -277,7 +277,7 @@
 										<td>{{project.Status}}</td>
 										<td>
 											<button class="btn btn-primary" ng-click="viewProject(project, true)"
-													type="button"><i
+													ng-show="loggedUser['UserType'] === 'manager'" type="button"><i
 													class="bi bi-pencil-square"></i>
 											</button>
 											<button class="btn btn-danger" ng-click="confirmDelete(project, 'project')"
@@ -294,7 +294,7 @@
 				</div>
 
 				<!-- Create Building -->
-				<form ng-show="pages['createBuilding']" ng-submit="submitBuilding('editBuilding', true)">
+				<form ng-show="pages['createBuilding']" ng-submit="submitBuilding('viewBuilding', true)">
 					<div class="row">
 						<div class="mb-3">
 							<button class="btn btn-outline-primary float-start" ng-click="goBack()" type="button"><i
@@ -490,7 +490,7 @@
 									<thead>
 									<tr>
 										<th scope="col">Comment</th>
-										<th scope="col">Author</th>
+                    <th scope="col">Author</th>
 										<th scope="col">
 											<button class="btn btn-primary" ng-click="modifyComment()"
 													type="button"><i class="bi bi-plus-lg"></i>
@@ -504,11 +504,12 @@
 										<td><a href ng-click="changePage('viewAccount')">{{comment['Author']}}</a></td>
 										<td>
 											<button class="btn btn-primary" ng-click="modifyComment(comment)"
-													type="button">
+												ng-show="loggedUser['UserType'] === 'manager' || loggedUser['LoginName'] === comment['Author']"	type="button">
 												<i class="bi bi-pencil-square"></i>
 											</button>
-											<button class="btn btn-danger" ng-click="confirmDelete(comment, 'comment')"
-													type="button"><i class="bi bi-trash"></i>
+											<button class="btn btn-success" ng-click="confirmDelete(comment, 'comment')"
+													ng-show="loggedUser['UserType'] === 'manager' || loggedUser['LoginName'] === comment['Author']" type="button">
+                          <i class="bi bi-check2-square"></i>
 											</button>
 										</td>
 									</tr>
